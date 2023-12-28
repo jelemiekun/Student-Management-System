@@ -5,8 +5,7 @@ module com.example.fxstudentmanagement {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
 
-    opens com.example.fxstudentmanagement to javafx.fxml;
+    opens com.example.fxstudentmanagement.Controllers to javafx.fxml;
     exports com.example.fxstudentmanagement;
     exports com.example.fxstudentmanagement.Controllers;
-    opens com.example.fxstudentmanagement.Controllers to javafx.fxml;
 }

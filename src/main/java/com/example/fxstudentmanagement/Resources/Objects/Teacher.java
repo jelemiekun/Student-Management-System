@@ -1,14 +1,18 @@
 package com.example.fxstudentmanagement.Resources.Objects;
 
-import java.time.LocalDate;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-public class Teacher extends Person{
+import java.time.LocalDate;
+import java.util.Scanner;
+
+public class Teacher extends Person implements TeacherOperation {
     private Integer employeeID;
     private Integer gradeLevelTeaching;
     private String subject;
 
     public Teacher(String firstName, String middleName, String lastName, String gender, Integer age, String phoneNumber, LocalDate birthday,
-                    Integer employeeID, Integer gradeLevelTeaching, String subject) {
+                   Integer employeeID, Integer gradeLevelTeaching, String subject) {
         super(firstName, middleName, lastName, gender, age, phoneNumber, birthday);
         this.employeeID = employeeID;
         this.gradeLevelTeaching = gradeLevelTeaching;
@@ -45,5 +49,41 @@ public class Teacher extends Person{
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    // Operations
+    private static Integer numberOfSections;
+    public ObservableList<Section> sectionObservableList = FXCollections.observableArrayList();
+    public Section section;
+
+    public void viewSectionList() {
+
+    }
+
+    public void clearSection() {
+
+    }
+
+    public void importSection() {
+
+    }
+    public void exportSection() {
+
+    }
+
+    public void addSection() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Section name:");
+        String sectionName = scanner.nextLine();
+
+        section = new Section(sectionName);
+        sectionObservableList.add(section);
+        System.out.println("Section " + sectionName + " created");
+    }
+    public void updateSection() {
+
+    }
+    public void deleteSection() {
+
     }
 }

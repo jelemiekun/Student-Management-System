@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.fxstudentmanagement.Controllers.Scene1">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="341.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fxstudentmanagement.Controllers.Scene1">
+   <children>
+      <AnchorPane layoutX="29.0" layoutY="29.0" prefHeight="112.0" prefWidth="283.0">
+         <children>
+            <Label layoutX="8.0" layoutY="21.0" text="Email:" />
+            <Label layoutX="7.0" layoutY="77.0" text="Password:" />
+            <TextField fx:id="txtFieldEmail" layoutX="65.0" layoutY="17.0" onKeyPressed="#txtFieldPressedEnter" prefHeight="25.0" prefWidth="204.0" promptText="your@email.com" />
+            <TextField fx:id="txtFieldPassword" layoutX="65.0" layoutY="73.0" onKeyPressed="#txtFieldPressedEnter" prefHeight="25.0" prefWidth="204.0" promptText="password" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="29.0" layoutY="145.0" prefHeight="48.0" prefWidth="283.0">
+         <children>
+            <Button fx:id="btnLogin" layoutX="96.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#btnLoginClicked" text="Login" />
+            <Button fx:id="btnRegister" layoutX="151.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#btnRegisterClicked" text="Register" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

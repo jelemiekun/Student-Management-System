@@ -56,4 +56,8 @@ public class Student extends Person {
     public void setSection(String section) {
         this.section = section;
     }
+
+    public void addGrade() {
+
+    }
 }
