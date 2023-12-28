@@ -7,6 +7,14 @@ public class Section {
     public ObservableList<Student> studentObservableList = FXCollections.observableArrayList();
     private Integer sectionID;
     private String sectionName;
+    private String adviserName;
+
+    public Section(String sectionName, String adviserName) {
+        // generate section id ->
+        this.sectionName = sectionName;
+        this.adviserName = adviserName;
+    }
+
     public Section(String sectionName) {
         // generate section id -> sectionID = generateSectionID();
         this.sectionName = sectionName;

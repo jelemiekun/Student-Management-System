@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 
-public class Register {
+public class RegisterOrEdit {
 
     @FXML
     private DatePicker birthday;

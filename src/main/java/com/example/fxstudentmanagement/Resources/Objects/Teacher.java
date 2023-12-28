@@ -2,8 +2,17 @@ package com.example.fxstudentmanagement.Resources.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Teacher extends Person implements TeacherOperation {
@@ -64,13 +73,26 @@ public class Teacher extends Person implements TeacherOperation {
     }
 
     public void addSection() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Section name:");
-        String sectionName = scanner.nextLine();
+        /**
+         * DITO NARIN MAMIMILI NG GRADE LEVEL AT STRAND
+         */
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Customized Text Input Dialog");
+        dialog.setHeaderText("Enter your name:");
+        dialog.setContentText("Name:");
 
-        section = new Section(sectionName);
-        sectionObservableList.add(section);
-        System.out.println("Section " + sectionName + " created");
+        // Create custom buttons
+        ButtonType buttonTypeYes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+        ButtonType buttonTypeNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        // Set custom buttons to the dialog
+        dialog.getDialogPane().getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        // Show the dialog
+        Optional<String> result = dialog.showAndWait();
+
+        // Handle the result
+        result.ifPresent(name -> System.out.println(name));
     }
     public void viewSection() {
 
