@@ -56,14 +56,6 @@ public class Teacher extends Person implements TeacherOperation {
     public ObservableList<Section> sectionObservableList = FXCollections.observableArrayList();
     public Section section;
 
-    public void viewSectionList() {
-
-    }
-
-    public void clearSection() {
-
-    }
-
     public void importSection() {
 
     }
@@ -79,6 +71,9 @@ public class Teacher extends Person implements TeacherOperation {
         section = new Section(sectionName);
         sectionObservableList.add(section);
         System.out.println("Section " + sectionName + " created");
+    }
+    public void viewSection() {
+
     }
     public void updateSection() {
 

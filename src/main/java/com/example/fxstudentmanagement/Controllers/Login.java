@@ -6,7 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public class Scene1 {
+public class Login {
 
     @FXML
     private Button btnLogin;
