@@ -4,8 +4,11 @@ module com.example.fxstudentmanagement {
 
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
-    opens com.example.fxstudentmanagement.Controllers to javafx.fxml;
     exports com.example.fxstudentmanagement;
-    exports com.example.fxstudentmanagement.Controllers;
+    exports com.example.fxstudentmanagement.Controllers.Logics;
+    opens com.example.fxstudentmanagement.Controllers.Logics to javafx.fxml;
+    exports com.example.fxstudentmanagement.Controllers.Controllers;
+    opens com.example.fxstudentmanagement.Controllers.Controllers to javafx.fxml;
 }
