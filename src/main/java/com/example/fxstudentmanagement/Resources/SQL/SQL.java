@@ -1,7 +1,7 @@
-package com.example.fxstudentmanagement.SQL;
+package com.example.fxstudentmanagement.Resources.SQL;
 
 import java.sql.*;
-import static com.example.fxstudentmanagement.SQL.SQLAlert.*;
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts.*;
 public class SQL {
     private static String URL = "jdbc:mysql://localhost:3306/";
     private static String USER = "root";
@@ -9,14 +9,14 @@ public class SQL {
     private static Connection connection;
     private static Statement statement;
     private static String databaseName = "student_management_fx";
-    public static void CreateConnection() {
+    public static void createConnection() {
         try {
             connection = DriverManager.getConnection(URL, USER, PASS);
             statement = connection.createStatement();
 
             AlertsetHeaderText = "Connected to database.";
             AlertsetContentText = "Successfully connected to database.";
-            sqlAlert(false);
+            //sqlAlert(false);
             setDatabaseAndTable();
         } catch (SQLException e) {
             AlertsetHeaderText = "Can't connect to database.";

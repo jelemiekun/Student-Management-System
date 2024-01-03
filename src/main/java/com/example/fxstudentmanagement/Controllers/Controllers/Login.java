@@ -1,31 +1,29 @@
 package com.example.fxstudentmanagement.Controllers.Controllers;
 
-import com.example.fxstudentmanagement.SQL.SQL;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import static com.example.fxstudentmanagement.SQL.SQL.*;
-import static com.example.fxstudentmanagement.Controllers.Logics.Login.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Login  implements Initializable{
+public class Login implements Initializable {
+    private com.example.fxstudentmanagement.Controllers.Logics.Login login;
     public static FXMLLoader fxmlLoader;
     public static Parent root;
     public static Scene scene;
     public static Stage stage;
     public static Stage thisStage;
-    private com.example.fxstudentmanagement.Controllers.Logics.Login login;
     @FXML
     public Button btnLogin;
 
@@ -36,10 +34,9 @@ public class Login  implements Initializable{
     public TextField txtFieldEmail;
 
     @FXML
-    public TextField txtFieldPassword;
+    public PasswordField txtFieldPassword;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        CreateConnection();
         login = new com.example.fxstudentmanagement.Controllers.Logics.Login();
     }
     @FXML
@@ -48,20 +45,20 @@ public class Login  implements Initializable{
         thisStage.close();
         login.proceed(true);
     }
-
     @FXML
     void btnRegisterClicked(MouseEvent event) throws IOException {
         setThisStage();
         thisStage.close();
         login.proceed(false);
     }
-
     @FXML
     void txtFieldPressedEnter(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
 
+        }
     }
-
     private void setThisStage() {
         thisStage = (Stage) btnLogin.getScene().getWindow();
     }
+
 }

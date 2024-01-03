@@ -10,7 +10,6 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="422.0" prefWidth="488.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fxstudentmanagement.Controllers.Controllers.RegisterOrEdit">
    <children>
       <Label layoutX="54.0" layoutY="55.0" text="First Name:" />
@@ -26,20 +25,20 @@
       <TextField fx:id="txtFieldFirstName" layoutX="54.0" layoutY="87.0" prefHeight="25.0" prefWidth="109.0" />
       <TextField fx:id="txtFieldMiddleName" layoutX="186.0" layoutY="87.0" prefHeight="25.0" prefWidth="109.0" />
       <TextField fx:id="txtFieldLastName" layoutX="323.0" layoutY="87.0" prefHeight="25.0" prefWidth="109.0" />
-      <RadioButton fx:id="radioBtnMale" layoutX="53.0" layoutY="154.0" mnemonicParsing="false" text="Male">
+      <RadioButton fx:id="radioBtnMale" layoutX="53.0" layoutY="154.0" mnemonicParsing="false" onMouseClicked="#genderClicked" text="Male">
          <toggleGroup>
             <ToggleGroup fx:id="gender" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="radioBtnFemale" layoutX="53.0" layoutY="178.0" mnemonicParsing="false" text="Female" toggleGroup="$gender" />
-      <RadioButton fx:id="radioBtnOther" layoutX="53.0" layoutY="202.0" mnemonicParsing="false" text="Other" toggleGroup="$gender" />
+      <RadioButton fx:id="radioBtnFemale" layoutX="53.0" layoutY="178.0" mnemonicParsing="false" onMouseClicked="#genderClicked" text="Female" toggleGroup="$gender" />
+      <RadioButton fx:id="radioBtnOther" layoutX="53.0" layoutY="202.0" mnemonicParsing="false" onMouseClicked="#genderClicked" text="Other" toggleGroup="$gender" />
       <Spinner fx:id="spinnerAge" editable="true" layoutX="135.0" layoutY="161.0" prefHeight="25.0" prefWidth="109.0" />
       <TextField fx:id="txtFieldPhoneNumber" layoutX="282.0" layoutY="159.0" prefHeight="25.0" prefWidth="150.0" />
       <DatePicker fx:id="birthday" layoutX="243.0" layoutY="219.0" prefHeight="25.0" prefWidth="194.0" />
       <TextField fx:id="txtFieldEmployeeID" layoutX="53.0" layoutY="286.0" prefHeight="25.0" prefWidth="109.0" />
       <ChoiceBox fx:id="choiceBoxGradeLevel" layoutX="180.0" layoutY="286.0" prefHeight="25.0" prefWidth="84.0" />
       <ChoiceBox fx:id="choiceBoxDepartment" layoutX="287.0" layoutY="286.0" prefHeight="25.0" prefWidth="150.0" />
-      <Button fx:id="btnCancel" layoutX="184.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#btnCancelClicked" text="Cancel" />
-      <Button fx:id="btnRegister" layoutX="251.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#btnRegisterClicked" text="Register" />
+      <Button fx:id="btnCancel" layoutX="184.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#btnGoBackClicked" text="Cancel" />
+      <Button fx:id="btnRegister" layoutX="251.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#btnRegisterOrDoneClicked" text="Register" />
    </children>
 </AnchorPane>

@@ -1,8 +1,7 @@
-package com.example.fxstudentmanagement.Resources.Lists;
+package com.example.fxstudentmanagement.Resources.Miscellaneous;
 
 import com.example.fxstudentmanagement.Resources.Objects.Credentials;
 import com.example.fxstudentmanagement.Resources.Objects.Section;
-import com.example.fxstudentmanagement.Resources.Objects.Student;
 import com.example.fxstudentmanagement.Resources.Objects.Teacher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,10 +18,10 @@ public class Lists {
             7, 8, 9, 10, 11, 12
     );
     public static ObservableList<String> JHSDepartments = FXCollections.observableArrayList(
-            ""
+            "FILIPINO", "ENGLISH", "ARALING PANLIPUNAN", "T.L.E.", "MATH", "SCIENCE", "EDUKASYON SA PAGPAPAKATAO", "M.A.P.E.H.", "E.P.P."
     );
 
-    public static ObservableList<String> SHSDepartmentsObservableList = FXCollections.observableArrayList(
+    public static ObservableList<String> SHSDepartments = FXCollections.observableArrayList(
             "ABM", "A.D.", "HE 3", "HE 4", "HUMSS", "IA", "ICT Programming", "ICT CSS", "STEM", "SPORTS"
     );
     public static ObservableList<String> ABMobservableList = FXCollections.observableArrayList(

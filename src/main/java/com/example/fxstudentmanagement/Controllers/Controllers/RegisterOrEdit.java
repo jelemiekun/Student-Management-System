@@ -1,70 +1,97 @@
 package com.example.fxstudentmanagement.Controllers.Controllers;
 
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.*;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
-public class RegisterOrEdit {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    @FXML
-    private DatePicker birthday;
-
-    @FXML
-    private Button btnCancel;
-
-    @FXML
-    private Button btnRegister;
+public class RegisterOrEdit implements Initializable {
+    private com.example.fxstudentmanagement.Controllers.Logics.RegisterOrEdit registerOrEdit;
 
     @FXML
-    private ChoiceBox<?> choiceBoxDepartment;
+    public DatePicker birthday;
 
     @FXML
-    private ChoiceBox<?> choiceBoxGradeLevel;
+    public Button btnCancel;
 
     @FXML
-    private ToggleGroup gender;
+    public Button btnRegister;
 
     @FXML
-    private RadioButton radioBtnFemale;
+    public ChoiceBox<String> choiceBoxDepartment;
 
     @FXML
-    private RadioButton radioBtnMale;
+    public ChoiceBox<Integer> choiceBoxGradeLevel;
 
     @FXML
-    private RadioButton radioBtnOther;
+    public ToggleGroup gender;
 
     @FXML
-    private Spinner<?> spinnerAge;
+    public RadioButton radioBtnFemale;
 
     @FXML
-    private TextField txtFieldEmployeeID;
+    public RadioButton radioBtnMale;
 
     @FXML
-    private TextField txtFieldFirstName;
+    public RadioButton radioBtnOther;
 
     @FXML
-    private TextField txtFieldLastName;
+    public Spinner<Integer> spinnerAge;
 
     @FXML
-    private TextField txtFieldMiddleName;
+    public TextField txtFieldEmployeeID;
 
     @FXML
-    private TextField txtFieldPhoneNumber;
+    public TextField txtFieldFirstName;
 
     @FXML
-    void btnCancelClicked(MouseEvent event) {
+    public TextField txtFieldLastName;
 
+    @FXML
+    public TextField txtFieldMiddleName;
+
+    @FXML
+    public TextField txtFieldPhoneNumber;
+    public static FXMLLoader fxmlLoader;
+    public static Parent root;
+    public static Scene scene;
+    public static Stage stage;
+
+    @FXML
+    void btnGoBackClicked(MouseEvent event) throws IOException {
+        registerOrEdit.proceed(true);
     }
 
     @FXML
-    void btnRegisterClicked(MouseEvent event) {
+    void btnRegisterOrDoneClicked(MouseEvent event) throws IOException{
+        registerOrEdit.btnRegisterClicked();
+    }
 
+    @FXML
+    void genderClicked(MouseEvent event) {
+        registerOrEdit.getGender();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        registerOrEdit = new com.example.fxstudentmanagement.Controllers.Logics.RegisterOrEdit();
+        registerOrEdit.setRegisterOrEdit(this);
+        registerOrEdit.setSpinner();
+
+        choiceBoxGradeLevel.setItems(gradeLevel);
+        choiceBoxGradeLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            registerOrEdit.gradeLevelTeachingSelected();
+        });
     }
 
 }

@@ -8,7 +8,11 @@ import java.io.IOException;
 
 public class Login {
     public void proceed(boolean isHome) throws IOException {
+        if (isHome)
+            attemptLogin();
+
         String resource = isHome ? "/com/example/fxstudentmanagement/Home.fxml" : "/com/example/fxstudentmanagement/RegisterOrEdit.fxml" ;
+        String title = isHome ? "Home" : "Register";
 
         fxmlLoader = new FXMLLoader(Login.class.getResource(resource));
         root = fxmlLoader.load();
@@ -16,6 +20,10 @@ public class Login {
         stage = new Stage();
         stage.setScene(scene);
         stage.setResizable(false);
+        stage.setTitle(title);
         stage.show();
+    }
+
+    private void attemptLogin() {
     }
 }
