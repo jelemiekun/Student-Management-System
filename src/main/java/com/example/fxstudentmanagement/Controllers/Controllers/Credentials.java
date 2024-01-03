@@ -28,7 +28,7 @@ public class Credentials implements Initializable {
     public PasswordField txtFieldConfirmPassword;
 
     @FXML
-    void btnGoBackClicked(MouseEvent event) {
+    void btnGoBackClicked(MouseEvent event) throws IOException{
         credentials.goBack();
     }
 
@@ -44,7 +44,7 @@ public class Credentials implements Initializable {
     }
 
     @FXML
-    void cancelPressedEnter(KeyEvent event) {
+    void cancelPressedEnter(KeyEvent event) throws IOException {
         if (event.getCode() == KeyCode.ENTER)
             credentials.goBack();
     }

@@ -1,7 +1,6 @@
 package com.example.fxstudentmanagement.Controllers.Logics;
 
-import com.example.fxstudentmanagement.Resources.Objects.Credentials;
-import com.example.fxstudentmanagement.Resources.Objects.Teacher;
+import com.example.fxstudentmanagement.Resources.Miscellaneous.Scenes;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.SpinnerValueFactory;
@@ -9,22 +8,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Arrays;
 
 import static com.example.fxstudentmanagement.Controllers.Controllers.RegisterOrEdit.*;
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.*;
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts.*;
 
 public class RegisterOrEdit {
-    public Credentials credentials;
-    private Teacher teacher;
     private String genderSelected;
     private com.example.fxstudentmanagement.Controllers.Controllers.RegisterOrEdit registerOrEdit;
     public void setRegisterOrEdit(com.example.fxstudentmanagement.Controllers.Controllers.RegisterOrEdit registerOrEdit) {
         this.registerOrEdit = registerOrEdit;
     }
     public void btnRegisterClicked() throws IOException{
-        System.out.println(loginHashMap);
         checkInputs();
     }
     public void gradeLevelTeachingSelected() {
@@ -62,7 +57,7 @@ public class RegisterOrEdit {
             registerOrEdit.birthday.getValue() != null                &&   registerOrEdit.choiceBoxGradeLevel.getValue() != null &&
             registerOrEdit.choiceBoxDepartment.getValue() != null) {
             if (areInputIntegers()) {
-                addTeacher();
+                proceed(true);
             } else {
                 alertFormNotComplete(false);
             }
@@ -80,62 +75,15 @@ public class RegisterOrEdit {
         }
     }
 
-    private void addTeacher() throws IOException{
-        String firstName = registerOrEdit.txtFieldFirstName.getText();
-        String lastName = registerOrEdit.txtFieldLastName.getText();
-        String gender = genderSelected;
-        Integer age = registerOrEdit.spinnerAge.getValue();
-        String phoneNumber = registerOrEdit.txtFieldPhoneNumber.getText();
-        LocalDate birthday = registerOrEdit.birthday.getValue();
-        Integer employeeID = Integer.valueOf(registerOrEdit.txtFieldEmployeeID.getText());
-        Integer gradeLevelTeaching = registerOrEdit.choiceBoxGradeLevel.getValue();
-        String department = registerOrEdit.choiceBoxDepartment.getValue();
-
-        Teacher teacher1;
-        if (registerOrEdit.txtFieldMiddleName.getText().isEmpty()) {
-            teacher1 = new Teacher(firstName, lastName, gender, age, phoneNumber, birthday, employeeID, gradeLevelTeaching, department);
-        } else {
-            String middleName = registerOrEdit.txtFieldMiddleName.getText();
-            teacher1 = new Teacher(firstName, middleName, lastName, gender, age, phoneNumber, birthday, employeeID, gradeLevelTeaching, department);
-        }
-
-        teacher = teacher1;
-        System.out.println(teacher);
-        credentials();
-    }
-
-    private void credentials() throws IOException {
-        fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/fxstudentmanagement/Credentials.fxml"));
-        root = fxmlLoader.load();
-        scene = new Scene(root);
-        stage = new Stage();
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.setTitle("Credentials");
-        stage.show();
-
-        closeThisStage(true);
-    }
-
-    public void doneAdding() throws IOException{
-        addToLists();
-        alertRegisterDone();
-        proceed(true);
-    }
-
-    private void addToLists() {
-        loginHashMap.put(credentials, teacher);
-        teacherHashSet.add(teacher);
-
-        System.out.println(loginHashMap);
-    }
-
-    public void proceed(boolean toLogin) throws IOException{
-        String source = toLogin ? "/com/example/fxstudentmanagement/Login.fxml" : "/com/example/fxstudentmanagement/Home.fxml";
-        String title = toLogin ? "Log-in" : "Home";
+    public void proceed(boolean toCredentials) throws IOException{
+        String source = toCredentials ? Scenes.CREDENTIALS.getPath() : Scenes.HOME.getPath();
+        String title = toCredentials ? Scenes.CREDENTIALS.getTitle() : Scenes.HOME.getTitle();
 
         fxmlLoader = new FXMLLoader(getClass().getResource(source));
         root = fxmlLoader.load();
+
+        addTeacher();
+
         scene = new Scene(root);
         stage = new Stage();
         stage.setScene(scene);
@@ -143,14 +91,33 @@ public class RegisterOrEdit {
         stage.setTitle(title);
         stage.show();
 
-        closeThisStage(false);
+        closeThisStage();
     }
 
-    private void closeThisStage(boolean isHide) throws IOException{
+    private void addTeacher() {
+        String firstName = registerOrEdit.txtFieldFirstName.getText();
+        String lastName = registerOrEdit.txtFieldLastName.getText();
+        String gender = genderSelected;
+        Integer age = registerOrEdit.spinnerAge.getValue();
+        String phoneNumber = registerOrEdit.txtFieldPhoneNumber.getText();
+        LocalDate birthday = registerOrEdit.birthday.getValue();
+        int employeeID = Integer.parseInt(registerOrEdit.txtFieldEmployeeID.getText());
+        Integer gradeLevelTeaching = registerOrEdit.choiceBoxGradeLevel.getValue();
+        String department = registerOrEdit.choiceBoxDepartment.getValue();
+
+        Credentials credentials = new Credentials();
+
+        if (!registerOrEdit.txtFieldMiddleName.getText().isEmpty()) {
+            String middleName = registerOrEdit.txtFieldMiddleName.getText();
+            credentials.getTeacherInfoAndCreateObject(birthday, new Integer[]{age, employeeID, gradeLevelTeaching}, firstName, middleName, lastName, gender, phoneNumber, department);
+        } else {
+            credentials.getTeacherInfoAndCreateObject(birthday, new Integer[]{age, employeeID, gradeLevelTeaching}, firstName, lastName, gender, phoneNumber, department);
+        }
+
+    }
+
+    private void closeThisStage() {
         Stage thisStage = (Stage) registerOrEdit.txtFieldFirstName.getScene().getWindow();
-        if (isHide)
-            thisStage.hide();
-        else
-            thisStage.close();
+        thisStage.close();
     }
 }

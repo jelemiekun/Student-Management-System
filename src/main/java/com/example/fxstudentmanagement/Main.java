@@ -2,6 +2,7 @@ package com.example.fxstudentmanagement;
 
 import static com.example.fxstudentmanagement.Resources.SQL.SQL.createConnection;
 
+import com.example.fxstudentmanagement.Resources.Miscellaneous.Scenes;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -20,7 +21,7 @@ public class Main extends Application {
         stage.setTitle("Student Management System");
         stage.setResizable(false);
         stage.setScene(scene);
-        stage.setTitle("Log-in");
+        stage.setTitle(Scenes.LOGIN.getTitle());
         stage.show();
     }
 

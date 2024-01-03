@@ -1,5 +1,6 @@
 package com.example.fxstudentmanagement.Controllers.Logics;
 
+import com.example.fxstudentmanagement.Resources.Miscellaneous.Scenes;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -11,8 +12,8 @@ public class Login {
         if (isHome)
             attemptLogin();
 
-        String resource = isHome ? "/com/example/fxstudentmanagement/Home.fxml" : "/com/example/fxstudentmanagement/RegisterOrEdit.fxml" ;
-        String title = isHome ? "Home" : "Register";
+        String resource = isHome ? Scenes.HOME.getPath() : Scenes.REGISTER.getPath(); ;
+        String title = isHome ? Scenes.HOME.getTitle() : Scenes.REGISTER.getTitle();
 
         fxmlLoader = new FXMLLoader(Login.class.getResource(resource));
         root = fxmlLoader.load();
