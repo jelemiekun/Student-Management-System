@@ -11,7 +11,8 @@ import java.util.*;
 public class Lists {
     public static Set<Teacher> teacherHashSet = new HashSet<>();
     public static Map<Teacher, List<Section>> sectionTeacherHashMap = new HashMap<>();
-    public static Map<Credentials, Teacher> loginHashMap = new HashMap<>();
+    public static Map<Credentials, Teacher> credenTialsTeacherHashMap = new HashMap<>();
+    public static Map<String, String> loginMap = new HashMap<>();
 
 
     public static ObservableList<Integer> gradeLevel = FXCollections.observableArrayList(

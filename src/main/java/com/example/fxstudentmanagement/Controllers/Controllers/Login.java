@@ -42,24 +42,17 @@ public class Login implements Initializable {
     }
     @FXML
     void btnLoginClicked(MouseEvent event) throws IOException {
-        setThisStage();
-        thisStage.close();
         login.proceed(true);
     }
     @FXML
     void btnRegisterClicked(MouseEvent event) throws IOException {
-        setThisStage();
-        thisStage.close();
         login.proceed(false);
     }
     @FXML
-    void txtFieldPressedEnter(KeyEvent event) {
+    void txtFieldPressedEnter(KeyEvent event) throws IOException {
         if (event.getCode() == KeyCode.ENTER) {
-
+            login.proceed(true);
         }
-    }
-    private void setThisStage() {
-        thisStage = (Stage) btnLogin.getScene().getWindow();
     }
 
 }

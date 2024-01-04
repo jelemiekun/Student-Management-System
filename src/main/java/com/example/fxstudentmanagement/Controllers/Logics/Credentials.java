@@ -7,18 +7,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.time.LocalDate;
-import java.util.Arrays;
 
 import static com.example.fxstudentmanagement.Controllers.Controllers.RegisterOrEdit.*;
 import static com.example.fxstudentmanagement.Controllers.Controllers.RegisterOrEdit.stage;
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts.*;
-import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.loginHashMap;
-import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.teacherHashSet;
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.*;
 
 public class Credentials {
     private static Teacher teacherObject;
@@ -88,7 +82,8 @@ public class Credentials {
     }
 
     private void addToLists() {
-        loginHashMap.put(credentialsObject, teacherObject);
+        loginMap.put(credentials.txtFieldEmail.getText(), credentials.txtFieldConfirmPassword.getText());
+        credenTialsTeacherHashMap.put(credentialsObject, teacherObject);
         teacherHashSet.add(teacherObject);
     }
 
@@ -114,6 +109,7 @@ public class Credentials {
     }
 
     private void closeThisStage() {
+        System.out.println(credenTialsTeacherHashMap);
         Stage thisStage = (Stage) credentials.txtFieldEmail.getScene().getWindow();
         thisStage.close();
     }

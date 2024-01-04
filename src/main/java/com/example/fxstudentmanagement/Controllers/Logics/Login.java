@@ -6,7 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import static com.example.fxstudentmanagement.Controllers.Controllers.Login.*;
-import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.loginHashMap;
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.credenTialsTeacherHashMap;
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.loginMap;
 
 import java.io.IOException;
 
@@ -21,19 +22,21 @@ public class Login {
     public void proceed(boolean isHome) throws IOException {
         if (isHome) {
             if (!doesMaxAttemptReached()) {
-                if (attemptLogin())
-                    goToHomeOrLogin(true);
+                if (attemptLogin()) {
+                    goToHome();
+                    closeThisStage();
+                }
             } else {
-                Alerts.alertLoginAttempt(true, true);
+                attemptLimitReached();
             }
         } else {
             goToRegister();
         }
     }
 
-    private void goToHomeOrLogin(boolean loggedIn) throws IOException {
-        String resource = loggedIn ? Scenes.HOME.getPath() : Scenes.LOGIN.getPath(); ;
-        String title = loggedIn ? Scenes.HOME.getTitle() : Scenes.LOGIN.getTitle();
+    private void goToHome() throws IOException {
+        String resource = Scenes.HOME.getPath(); ;
+        String title = Scenes.HOME.getTitle();
 
         fxmlLoader = new FXMLLoader(Login.class.getResource(resource));
         root = fxmlLoader.load();
@@ -48,6 +51,9 @@ public class Login {
     private void goToRegister() throws IOException {
         fxmlLoader = new FXMLLoader(getClass().getResource(Scenes.REGISTER.getPath()));
         root = fxmlLoader.load();
+
+        closeThisStage();
+
         scene = new Scene(root);
         stage = new Stage();
         stage.setScene(scene);
@@ -79,8 +85,8 @@ public class Login {
         String email = login.txtFieldEmail.getText();
         String password = login.txtFieldPassword.getText();
 
-        if (loginHashMap.containsKey(email)) {
-            if (loginHashMap.containsValue(password)) {
+        if (loginMap.containsKey(email)) {
+            if (loginMap.containsValue(password)) {
                 return true;
             } else {
                 Alerts.alertLoginAttempt(true, false);
@@ -89,5 +95,18 @@ public class Login {
             Alerts.alertLoginAttempt(false, false);
         }
         return false;
+    }
+
+    private void attemptLimitReached() {
+        Alerts.alertLoginAttempt(true, true);
+        login.txtFieldEmail.setText(null);
+        login.txtFieldPassword.setText(null);
+        attemptCount = 1;
+        login.txtFieldEmail.requestFocus();
+    }
+
+    private void closeThisStage() {
+        Stage loginStage = (Stage) login.txtFieldEmail.getScene().getWindow();
+        loginStage.close();
     }
 }
