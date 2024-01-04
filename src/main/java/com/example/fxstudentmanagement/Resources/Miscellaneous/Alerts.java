@@ -49,4 +49,14 @@ public class Alerts {
         alert.setContentText("Password and Confirm Password do not match.");
         alert.show();
     }
+
+
+    public static void alertLoginAttempt(boolean isWrongPassword, boolean doesMaxAttemptReached) {
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Login failed");
+        alert.setHeaderText(doesMaxAttemptReached ? "Attempt limit reached." : "Login attempt failed.");
+        alert.setContentText(doesMaxAttemptReached ? "You have reached the maximum attempt limit. Please try again later" :
+                            (isWrongPassword ? "Wrong Password" : "Cannot find account."));
+        alert.show();
+    }
 }

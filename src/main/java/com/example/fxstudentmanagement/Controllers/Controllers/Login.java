@@ -38,6 +38,7 @@ public class Login implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         login = new com.example.fxstudentmanagement.Controllers.Logics.Login();
+        login.setLogin(this);
     }
     @FXML
     void btnLoginClicked(MouseEvent event) throws IOException {
