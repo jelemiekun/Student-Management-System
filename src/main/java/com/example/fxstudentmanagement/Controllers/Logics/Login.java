@@ -21,25 +21,28 @@ public class Login {
     public void proceed(boolean isHome) throws IOException {
         if (isHome) {
             if (!doesMaxAttemptReached()) {
-                boolean loggedIn = attemptLogin();
-
-                String resource = loggedIn ? Scenes.HOME.getPath() : Scenes.LOGIN.getPath(); ;
-                String title = loggedIn ? Scenes.HOME.getTitle() : Scenes.LOGIN.getTitle();
-
-                fxmlLoader = new FXMLLoader(Login.class.getResource(resource));
-                root = fxmlLoader.load();
-                scene = new Scene(root);
-                stage = new Stage();
-                stage.setScene(scene);
-                stage.setResizable(false);
-                stage.setTitle(title);
-                stage.show();
+                if (attemptLogin())
+                    goToHomeOrLogin(true);
             } else {
                 Alerts.alertLoginAttempt(true, true);
             }
         } else {
             goToRegister();
         }
+    }
+
+    private void goToHomeOrLogin(boolean loggedIn) throws IOException {
+        String resource = loggedIn ? Scenes.HOME.getPath() : Scenes.LOGIN.getPath(); ;
+        String title = loggedIn ? Scenes.HOME.getTitle() : Scenes.LOGIN.getTitle();
+
+        fxmlLoader = new FXMLLoader(Login.class.getResource(resource));
+        root = fxmlLoader.load();
+        scene = new Scene(root);
+        stage = new Stage();
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setTitle(title);
+        stage.show();
     }
 
     private void goToRegister() throws IOException {
