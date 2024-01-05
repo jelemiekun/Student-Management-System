@@ -22,7 +22,7 @@ public abstract class Person {
 
     protected Person(String firstName, String lastName, String gender, Integer age, String phoneNumber, LocalDate birthday) {
         this.firstName = firstName;
-        this.middleName = "N/A";
+        this.middleName = "";
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;

@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="341.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fxstudentmanagement.Controllers.Controllers.Login">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="341.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fxstudentmanagement.Controllers.Controllers.Login">
    <children>
       <AnchorPane layoutX="29.0" layoutY="29.0" prefHeight="124.0" prefWidth="290.0">
          <children>
@@ -17,7 +17,7 @@
             <PasswordField fx:id="txtFieldPassword" layoutX="66.0" layoutY="73.0" onKeyPressed="#txtFieldPressedEnter" prefHeight="25.0" prefWidth="204.0" promptText="password" />
             <CheckBox fx:id="checkViewPass" layoutX="251.0" layoutY="101.0" mnemonicParsing="false" onAction="#checkViewPassSelected" />
             <Label layoutX="168.0" layoutY="101.0" text="View Password" />
-            <TextField fx:id="txtFieldViewPass" layoutX="65.0" layoutY="73.0" onKeyPressed="#txtFieldPressedEnter" prefHeight="26.0" prefWidth="204.0" visible="false" />
+            <TextField fx:id="txtFieldViewPass" layoutX="65.0" layoutY="73.0" onKeyPressed="#txtFieldPressedEnter" prefHeight="26.0" prefWidth="204.0" promptText="password" visible="false" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="29.0" layoutY="150.0" prefHeight="48.0" prefWidth="283.0">

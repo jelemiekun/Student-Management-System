@@ -76,13 +76,14 @@ public class RegisterOrEdit {
     }
 
     public void proceed(boolean toCredentials) throws IOException{
-        String source = toCredentials ? Scenes.CREDENTIALS.getPath() : Scenes.HOME.getPath();
-        String title = toCredentials ? Scenes.CREDENTIALS.getTitle() : Scenes.HOME.getTitle();
+        String source = toCredentials ? Scenes.CREDENTIALS.getPath() : Scenes.LOGIN.getPath();
+        String title = toCredentials ? Scenes.CREDENTIALS.getTitle() : Scenes.LOGIN.getTitle();
 
         fxmlLoader = new FXMLLoader(getClass().getResource(source));
         root = fxmlLoader.load();
 
-        addTeacher();
+        if (toCredentials)
+            addTeacher();
 
         scene = new Scene(root);
         stage = new Stage();

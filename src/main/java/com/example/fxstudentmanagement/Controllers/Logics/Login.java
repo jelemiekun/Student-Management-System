@@ -2,7 +2,7 @@ package com.example.fxstudentmanagement.Controllers.Logics;
 
 import com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts;
 import com.example.fxstudentmanagement.Resources.Miscellaneous.Scenes;
-import com.example.fxstudentmanagement.Resources.Objects.Teacher;
+import com.example.fxstudentmanagement.Resources.Objects.Credentials;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -10,7 +10,6 @@ import static com.example.fxstudentmanagement.Controllers.Controllers.Login.*;
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.*;
 
 import java.io.IOException;
-import java.util.Map;
 
 public class Login {
     private static Integer attemptCount = 1;
@@ -24,6 +23,7 @@ public class Login {
         if (isHome) {
             if (!doesMaxAttemptReached()) {
                 if (attemptLogin()) {
+                    getKeyAndValueCredentialsTeacher();
                     goToHome();
                     closeThisStage();
                 }
@@ -87,8 +87,7 @@ public class Login {
         String password = login.txtFieldPassword.getText();
 
         if (loginMap.containsKey(email)) {
-            if (loginMap.containsValue(password)) {
-                getTeacherKey(email, password);
+            if (loginMap.containsValue(password)) { // successfully logged in
                 return true;
             } else {
                 Alerts.alertLoginAttempt(true, false);
@@ -99,13 +98,27 @@ public class Login {
         return false;
     }
 
-    private void getTeacherKey(String email, String password) {
-        for (Credentials credentials : loginMap.get) {
-            if (credentials.getEmail.equals(email) && entry.getKey().getPassword().equals(password)) {
-                teacher = entry.getValue();
+    private void getKeyAndValueCredentialsTeacher() { // get key of credentials from email and get value of teacher from key of credentials
+        getCredentialsValue();
+        getTeacherKey();
+    }
+
+    private void getCredentialsValue() {
+        String email = login.txtFieldEmail.getText();
+
+        for (Credentials credentialsLogin : credentialsSet) {
+            if (credentialsLogin.getEmail().equals(email)) {
+                System.out.println(credentialsLogin.getEmail());
+                credentialsUsing = credentialsLogin;
                 return;
             }
         }
+    }
+
+    private void getTeacherKey() {
+        System.out.println(credentialsUsing);
+        teacherUsing = credentialsTeacherHashMap.get(credentialsUsing);
+        System.out.println(teacherUsing);
     }
 
     public void viewPass() {

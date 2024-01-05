@@ -9,11 +9,14 @@ import javafx.collections.ObservableList;
 import java.util.*;
 
 public class Lists {
-    public static Teacher teacher;
-    public static Set<Teacher> teacherHashSet = new HashSet<>();
-    public static Map<Teacher, List<Section>> sectionTeacherHashMap = new HashMap<>();
-    public static Map<Credentials, Teacher> credentialsTeacherHashMap = new HashMap<>();
+    public static Credentials credentialsUsing;
+    public static Teacher teacherUsing;
+    public static Set<Credentials> credentialsSet = new HashSet<>();
+
     public static Map<String, String> loginMap = new HashMap<>();
+    public static Set<Teacher> teacherSet = new HashSet<>();
+    public static Map<Credentials, Teacher> credentialsTeacherHashMap = new HashMap<>();
+    public static Map<Teacher, List<Section>> sectionTeacherHashMap = new HashMap<>();
 
 
     public static ObservableList<Integer> gradeLevel = FXCollections.observableArrayList(

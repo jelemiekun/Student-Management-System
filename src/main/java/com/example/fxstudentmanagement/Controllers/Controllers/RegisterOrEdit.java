@@ -69,7 +69,7 @@ public class RegisterOrEdit implements Initializable {
 
     @FXML
     void btnGoBackClicked(MouseEvent event) throws IOException {
-        registerOrEdit.proceed(true);
+        registerOrEdit.proceed(false);
     }
 
     @FXML

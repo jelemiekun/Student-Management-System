@@ -1,5 +1,6 @@
 package com.example.fxstudentmanagement.Controllers.Controllers;
 
+import com.example.fxstudentmanagement.Resources.Miscellaneous.Lists;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +26,7 @@ public class Login implements Initializable {
     public static Parent root;
     public static Scene scene;
     public static Stage stage;
-    public static Stage thisStage;
+    public Lists lists;
     @FXML
     public Button btnLogin;
 
@@ -45,6 +46,8 @@ public class Login implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         login = new com.example.fxstudentmanagement.Controllers.Logics.Login();
         login.setLogin(this);
+
+        lists = new Lists();
     }
     @FXML
     void btnLoginClicked(MouseEvent event) throws IOException {

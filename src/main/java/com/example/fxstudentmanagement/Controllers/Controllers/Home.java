@@ -16,43 +16,43 @@ public class Home implements Initializable {
     private com.example.fxstudentmanagement.Controllers.Logics.Home home;
 
     @FXML
-    private Button btnAddSection;
+    public Button btnAddSection;
 
     @FXML
-    private Button btnDeleteSection;
+    public Button btnDeleteSection;
 
     @FXML
-    private Button btnEditProfile;
+    public Button btnEditProfile;
 
     @FXML
-    private Button btnLogout;
+    public Button btnLogout;
 
     @FXML
-    private Button btnViewSection;
+    public Button btnViewSection;
 
     @FXML
-    private TableColumn<?, ?> colNumber;
+    public TableColumn<?, ?> colNumber;
 
     @FXML
-    private TableColumn<?, ?> colSection;
+    public TableColumn<?, ?> colSection;
 
     @FXML
-    private TableColumn<?, ?> colStudentCount;
+    public TableColumn<?, ?> colStudentCount;
 
     @FXML
-    private Label labelDepartmentHere;
+    public Label labelDepartmentHere;
 
     @FXML
-    private Label labelNameHere;
+    public Label labelNameHere;
 
     @FXML
-    private Label labelTotalCount;
+    public Label labelTotalCount;
 
     @FXML
-    private TableView<?> tableView;
+    public TableView<?> tableView;
 
     @FXML
-    private AnchorPane totalCounterAnchorPane;
+    public AnchorPane totalCounterAnchorPane;
 
     @FXML
     void btnAddSectionClicked(MouseEvent event) {
@@ -88,5 +88,6 @@ public class Home implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         home = new com.example.fxstudentmanagement.Controllers.Logics.Home();
         home.setHome(this);
+        home.initialize();
     }
 }

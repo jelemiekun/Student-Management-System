@@ -82,9 +82,12 @@ public class Credentials {
     }
 
     private void addToLists() {
+        teacherSet.add(teacherObject);
+        credentialsSet.add(credentialsObject);
+
         loginMap.put(credentials.txtFieldEmail.getText(), credentials.txtFieldConfirmPassword.getText());
+
         credentialsTeacherHashMap.put(credentialsObject, teacherObject);
-        teacherHashSet.add(teacherObject);
     }
 
     public void goBack() throws IOException{
@@ -109,7 +112,6 @@ public class Credentials {
     }
 
     private void closeThisStage() {
-        System.out.println(credentialsTeacherHashMap);
         Stage thisStage = (Stage) credentials.txtFieldEmail.getScene().getWindow();
         thisStage.close();
     }
