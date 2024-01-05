@@ -1,11 +1,13 @@
 package com.example.fxstudentmanagement.Controllers.Controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -35,6 +37,10 @@ public class Login implements Initializable {
 
     @FXML
     public PasswordField txtFieldPassword;
+    @FXML
+    public TextField txtFieldViewPass;
+    @FXML
+    public CheckBox checkViewPass;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         login = new com.example.fxstudentmanagement.Controllers.Logics.Login();
@@ -55,4 +61,8 @@ public class Login implements Initializable {
         }
     }
 
+    @FXML
+    void checkViewPassSelected(ActionEvent event) {
+        login.viewPass();
+    }
 }

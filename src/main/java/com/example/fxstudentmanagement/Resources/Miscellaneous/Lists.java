@@ -9,9 +9,10 @@ import javafx.collections.ObservableList;
 import java.util.*;
 
 public class Lists {
+    public static Teacher teacher;
     public static Set<Teacher> teacherHashSet = new HashSet<>();
     public static Map<Teacher, List<Section>> sectionTeacherHashMap = new HashMap<>();
-    public static Map<Credentials, Teacher> credenTialsTeacherHashMap = new HashMap<>();
+    public static Map<Credentials, Teacher> credentialsTeacherHashMap = new HashMap<>();
     public static Map<String, String> loginMap = new HashMap<>();
 
 

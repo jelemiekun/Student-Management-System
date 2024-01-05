@@ -21,7 +21,7 @@ public class SQL {
         } catch (SQLException e) {
             AlertsetHeaderText = "Can't connect to database.";
             AlertsetContentText = e.getMessage();
-            sqlAlert(true);
+            //sqlAlert(true);
         }
     }
 

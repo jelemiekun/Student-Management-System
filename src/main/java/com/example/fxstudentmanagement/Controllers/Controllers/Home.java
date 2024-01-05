@@ -1,6 +1,7 @@
 package com.example.fxstudentmanagement.Controllers.Controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -8,7 +9,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-public class Home {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class Home implements Initializable {
+    private com.example.fxstudentmanagement.Controllers.Logics.Home home;
 
     @FXML
     private Button btnAddSection;
@@ -79,4 +84,9 @@ public class Home {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        home = new com.example.fxstudentmanagement.Controllers.Logics.Home();
+        home.setHome(this);
+    }
 }

@@ -83,7 +83,7 @@ public class Credentials {
 
     private void addToLists() {
         loginMap.put(credentials.txtFieldEmail.getText(), credentials.txtFieldConfirmPassword.getText());
-        credenTialsTeacherHashMap.put(credentialsObject, teacherObject);
+        credentialsTeacherHashMap.put(credentialsObject, teacherObject);
         teacherHashSet.add(teacherObject);
     }
 
@@ -109,7 +109,7 @@ public class Credentials {
     }
 
     private void closeThisStage() {
-        System.out.println(credenTialsTeacherHashMap);
+        System.out.println(credentialsTeacherHashMap);
         Stage thisStage = (Stage) credentials.txtFieldEmail.getScene().getWindow();
         thisStage.close();
     }

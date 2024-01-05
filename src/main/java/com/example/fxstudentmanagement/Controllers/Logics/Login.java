@@ -2,14 +2,15 @@ package com.example.fxstudentmanagement.Controllers.Logics;
 
 import com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts;
 import com.example.fxstudentmanagement.Resources.Miscellaneous.Scenes;
+import com.example.fxstudentmanagement.Resources.Objects.Teacher;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import static com.example.fxstudentmanagement.Controllers.Controllers.Login.*;
-import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.credenTialsTeacherHashMap;
-import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.loginMap;
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.*;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class Login {
     private static Integer attemptCount = 1;
@@ -87,6 +88,7 @@ public class Login {
 
         if (loginMap.containsKey(email)) {
             if (loginMap.containsValue(password)) {
+                getTeacherKey(email, password);
                 return true;
             } else {
                 Alerts.alertLoginAttempt(true, false);
@@ -95,6 +97,27 @@ public class Login {
             Alerts.alertLoginAttempt(false, false);
         }
         return false;
+    }
+
+    private void getTeacherKey(String email, String password) {
+        for (Credentials credentials : loginMap.get) {
+            if (credentials.getEmail.equals(email) && entry.getKey().getPassword().equals(password)) {
+                teacher = entry.getValue();
+                return;
+            }
+        }
+    }
+
+    public void viewPass() {
+        if (login.checkViewPass.isSelected()) {
+            login.txtFieldPassword.setVisible(false);
+            login.txtFieldViewPass.setVisible(true);
+            login.txtFieldViewPass.setText(login.txtFieldPassword.getText());
+        } else {
+            login.txtFieldPassword.setVisible(true);
+            login.txtFieldViewPass.setVisible(false);
+            login.txtFieldPassword.setText(login.txtFieldViewPass.getText());
+        }
     }
 
     private void attemptLimitReached() {
