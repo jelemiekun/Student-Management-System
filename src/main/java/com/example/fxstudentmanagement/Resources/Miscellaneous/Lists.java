@@ -9,6 +9,10 @@ import javafx.collections.ObservableList;
 import java.util.*;
 
 public class Lists {
+    /*
+    public static ObservableList<String> SHSDepartments = FXCollections.observableArrayList(
+            "ABM", "A.D.", "HE 3", "HE 4", "HUMSS", "IA", "ICT Programming", "ICT CSS", "STEM", "SPORTS"
+    );*/
     public static Credentials credentialsUsing;
     public static Teacher teacherUsing;
     public static Set<Credentials> credentialsSet = new HashSet<>();
@@ -23,11 +27,11 @@ public class Lists {
             7, 8, 9, 10, 11, 12
     );
     public static ObservableList<String> JHSDepartments = FXCollections.observableArrayList(
-            "FILIPINO", "ENGLISH", "ARALING PANLIPUNAN", "T.L.E.", "MATH", "SCIENCE", "EDUKASYON SA PAGPAPAKATAO", "M.A.P.E.H.", "E.P.P."
+            "ARALING PANLIPUNAN", "EDUKASYON SA PAGPAPAKATAO", "E.P.P.", "ENGLISH", "FILIPINO", "M.A.P.E.H.", "MATH", "SCIENCE", "T.L.E."
     );
 
     public static ObservableList<String> SHSDepartments = FXCollections.observableArrayList(
-            "ABM", "A.D.", "HE 3", "HE 4", "HUMSS", "IA", "ICT Programming", "ICT CSS", "STEM", "SPORTS"
+            "ABM", "A.D.", "ENGLISH", "FILIPINO", "HUMSS", "ICT", "MATH", "P.E.", "RESEARCH", "SCIENCE", "TVL"
     );
     public static ObservableList<String> ABMobservableList = FXCollections.observableArrayList(
             "DINAR", "DOLAR", "EURO", "PESO", "POUND", "REAL", "RINGGIT", "WON", "YEN"

@@ -10,6 +10,7 @@ public class Home {
     }
 
     public void initialize() {
-        //home.labelNameHere.setText(teacherUsing.getLastName() + ", " + teacherUsing.getFirstName() + " " + teacherUsing.getMiddleName());
+        home.labelNameHere.setText(teacherUsing.getLastName() + ", " + teacherUsing.getFirstName() + " " + teacherUsing.getMiddleName());
+        home.labelDepartmentHere.setText(teacherUsing.getDepartment());
     }
 }

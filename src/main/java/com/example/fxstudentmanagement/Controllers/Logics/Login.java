@@ -23,21 +23,26 @@ public class Login {
         if (isHome) {
             if (!doesMaxAttemptReached()) {
                 if (attemptLogin()) {
-                    getKeyAndValueCredentialsTeacher();
-                    goToHome();
-                    closeThisStage();
+                    proceedToLoginProcesses();
                 }
             } else {
                 attemptLimitReached();
             }
         } else {
-            goToRegister();
+            goToAnotherScene(false);
+            closeThisStage();
         }
     }
 
-    private void goToHome() throws IOException {
-        String resource = Scenes.HOME.getPath(); ;
-        String title = Scenes.HOME.getTitle();
+    private void proceedToLoginProcesses() throws IOException {
+        getKeyAndValueCredentialsTeacher();
+        goToAnotherScene(true);
+        closeThisStage();
+    }
+
+    private void goToAnotherScene(boolean toHome) throws IOException {
+        String resource = toHome ? Scenes.HOME.getPath() : Scenes.REGISTER.getPath();
+        String title = toHome? Scenes.HOME.getTitle() : Scenes.REGISTER.getTitle();
 
         fxmlLoader = new FXMLLoader(Login.class.getResource(resource));
         root = fxmlLoader.load();
@@ -46,20 +51,6 @@ public class Login {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setTitle(title);
-        stage.show();
-    }
-
-    private void goToRegister() throws IOException {
-        fxmlLoader = new FXMLLoader(getClass().getResource(Scenes.REGISTER.getPath()));
-        root = fxmlLoader.load();
-
-        closeThisStage();
-
-        scene = new Scene(root);
-        stage = new Stage();
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.setTitle(Scenes.REGISTER.getTitle());
         stage.show();
     }
 
@@ -108,7 +99,6 @@ public class Login {
 
         for (Credentials credentialsLogin : credentialsSet) {
             if (credentialsLogin.getEmail().equals(email)) {
-                System.out.println(credentialsLogin.getEmail());
                 credentialsUsing = credentialsLogin;
                 return;
             }
@@ -116,9 +106,7 @@ public class Login {
     }
 
     private void getTeacherKey() {
-        System.out.println(credentialsUsing);
         teacherUsing = credentialsTeacherHashMap.get(credentialsUsing);
-        System.out.println(teacherUsing);
     }
 
     public void viewPass() {

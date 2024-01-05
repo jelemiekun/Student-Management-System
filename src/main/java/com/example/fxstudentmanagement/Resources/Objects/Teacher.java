@@ -2,38 +2,32 @@ package com.example.fxstudentmanagement.Resources.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.util.Optional;
-import java.util.Scanner;
 
 public class Teacher extends Person implements TeacherOperation {
     private Integer employeeID;
     private Integer gradeLevelTeaching;
-    private String subject;
+    private String department;
 
     public Teacher(String firstName, String middleName, String lastName, String gender, Integer age, String phoneNumber, LocalDate birthday,
-                   Integer employeeID, Integer gradeLevelTeaching, String subject) {
+                   Integer employeeID, Integer gradeLevelTeaching, String department) {
         super(firstName, middleName, lastName, gender, age, phoneNumber, birthday);
         this.employeeID = employeeID;
         this.gradeLevelTeaching = gradeLevelTeaching;
-        this.subject = subject;
+        this.department = department;
     }
 
     public Teacher(String firstName, String lastName, String gender, Integer age, String phoneNumber, LocalDate birthday,
-                   Integer employeeID, Integer gradeLevelTeaching, String subject) {
+                   Integer employeeID, Integer gradeLevelTeaching, String department) {
         super(firstName, lastName, gender, age, phoneNumber, birthday);
         this.employeeID = employeeID;
         this.gradeLevelTeaching = gradeLevelTeaching;
-        this.subject = subject;
+        this.department = department;
     }
 
     public Integer getEmployeeID() {
@@ -52,12 +46,12 @@ public class Teacher extends Person implements TeacherOperation {
         this.gradeLevelTeaching = gradeLevelTeaching;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     // Operations

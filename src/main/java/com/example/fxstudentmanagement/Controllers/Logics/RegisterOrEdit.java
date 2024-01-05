@@ -58,19 +58,33 @@ public class RegisterOrEdit {
             registerOrEdit.choiceBoxDepartment.getValue() != null) {
             if (areInputIntegers()) {
                 proceed(true);
-            } else {
-                alertFormNotComplete(false);
             }
+             //   alertFormNotComplete(false);
         } else {
-            alertFormNotComplete(true);
+            alertFormNotComplete(true, false);
         }
     }
 
     private boolean areInputIntegers() {
+        return isPhoneNumberValid() && isEmployeeIDValid();
+    }
+
+    private boolean isPhoneNumberValid() {
         try {
-            Integer intValue = Integer.parseInt(registerOrEdit.txtFieldEmployeeID.getText());
+            Integer.parseInt(registerOrEdit.txtFieldEmployeeID.getText());
             return true;
         } catch (NumberFormatException e) {
+            alertFormNotComplete(false, false);
+            return false;
+        }
+    }
+
+    private boolean isEmployeeIDValid() {
+        try {
+            String regex = "^\\d{11}$";
+            return registerOrEdit.txtFieldPhoneNumber.getText().matches(regex);
+        } catch (NumberFormatException e) {
+            alertFormNotComplete(false, true);
             return false;
         }
     }

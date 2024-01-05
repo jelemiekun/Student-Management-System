@@ -19,20 +19,14 @@ public class Alerts {
         alert.show();
     }
 
-    public static void alertFormNotComplete(boolean ifForm) {
+    public static void alertFormNotComplete(boolean ifForm, boolean ifEmployeeID) {
         alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
-
-        if (ifForm) {
-            alert.setHeaderText("Form is not complete.");
-            alert.setContentText("Please fill out all details.");
-        } else {
-            alert.setHeaderText("Invalid employee ID.");
-            alert.setContentText("Please input a valid integer employee ID.");
-        }
-
+        alert.setHeaderText(ifForm ? "Form is not complete." : ifEmployeeID ? "Invalid employee ID." : "Invalid phone number.");
+        alert.setContentText(ifForm ? "Please fill out all details." : ifEmployeeID ? "Please input a valid employee ID." : "Please input a valid phone number. (09xxxxxxxxx)");
         alert.show();
     }
+
 
     public static void alertRegisterDone() {
         alert = new Alert(Alert.AlertType.INFORMATION);

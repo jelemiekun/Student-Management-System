@@ -39,7 +39,7 @@ public class Credentials {
                 alertPasswordMismatch();
             }
         } else {
-            alertFormNotComplete(true);
+            alertFormNotComplete(true, false);
         }
     }
 
