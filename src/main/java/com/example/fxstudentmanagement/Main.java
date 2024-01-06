@@ -31,7 +31,15 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        LocalDate localDate = LocalDate.now();
+        Teacher teacher = new Teacher("John Jeremie", "Eden", "Male", 17, "09208905313", localDate, 29, 12, "ICT");
+        Credentials credentials = new Credentials("admin", "admin");
+        teacherSet.add(teacher);
+        credentialsSet.add(credentials);
 
+        loginMap.put("admin", "admin");
+
+        credentialsTeacherHashMap.put(credentials, teacher);
         launch(args);
     }
 }
