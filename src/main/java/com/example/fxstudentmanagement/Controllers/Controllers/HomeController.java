@@ -1,5 +1,7 @@
 package com.example.fxstudentmanagement.Controllers.Controllers;
 
+import com.example.fxstudentmanagement.Controllers.Logics.HomeModel;
+import com.example.fxstudentmanagement.Resources.Objects.Section;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -9,11 +11,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Home implements Initializable {
-    private com.example.fxstudentmanagement.Controllers.Logics.Home home;
+public class HomeController implements Initializable {
+    private HomeModel homeModel;
 
     @FXML
     public Button btnAddSection;
@@ -29,15 +32,16 @@ public class Home implements Initializable {
 
     @FXML
     public Button btnViewSection;
+    @FXML
+    public TableView<Section> tableView;
+    @FXML
+    public TableColumn<Section, Integer> colNumber;
 
     @FXML
-    public TableColumn<?, ?> colNumber;
+    public TableColumn<Section, String> colSection;
 
     @FXML
-    public TableColumn<?, ?> colSection;
-
-    @FXML
-    public TableColumn<?, ?> colStudentCount;
+    public TableColumn<Section, Integer> colStudentCount;
 
     @FXML
     public Label labelDepartmentHere;
@@ -47,9 +51,6 @@ public class Home implements Initializable {
 
     @FXML
     public Label labelTotalCount;
-
-    @FXML
-    public TableView<?> tableView;
 
     @FXML
     public AnchorPane totalCounterAnchorPane;
@@ -65,8 +66,8 @@ public class Home implements Initializable {
     }
 
     @FXML
-    void btnEditProfileClicked(MouseEvent event) {
-
+    void btnEditProfileClicked(MouseEvent event) throws IOException {
+        homeModel.editProfile();
     }
 
     @FXML
@@ -86,8 +87,8 @@ public class Home implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        home = new com.example.fxstudentmanagement.Controllers.Logics.Home();
-        home.setHome(this);
-        home.initialize();
+        homeModel = new HomeModel();
+        homeModel.setHome(this);
+        homeModel.initialize();
     }
 }

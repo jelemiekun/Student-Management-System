@@ -2,12 +2,15 @@ package com.example.fxstudentmanagement.Controllers.Controllers;
 
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.*;
 
+import com.example.fxstudentmanagement.Controllers.Logics.RegisterOrEditModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -15,8 +18,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RegisterOrEdit implements Initializable {
-    private com.example.fxstudentmanagement.Controllers.Logics.RegisterOrEdit registerOrEdit;
+public class RegisterOrEditController implements Initializable {
+    private RegisterOrEditModel registerOrEditModel;
+    private RegisterOrEditModel.EditProfile editProfile;
 
     @FXML
     public DatePicker birthday;
@@ -69,30 +73,46 @@ public class RegisterOrEdit implements Initializable {
 
     @FXML
     void btnGoBackClicked(MouseEvent event) throws IOException {
-        registerOrEdit.proceed(false);
+        registerOrEditModel.btnGoBackClicked();
     }
 
     @FXML
     void btnRegisterOrDoneClicked(MouseEvent event) throws IOException{
-        registerOrEdit.btnRegisterClicked();
+        registerOrEditModel.btnRegisterClicked();
     }
 
     @FXML
     void genderClicked(MouseEvent event) {
-        registerOrEdit.getGender();
+        registerOrEditModel.getGender();
+    }
+    @FXML
+    void genderPressedEnter(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER)
+            registerOrEditModel.getGender();
+    }
+    @FXML
+    void txtFieldReleased(KeyEvent event) {
+        if (registerOrEditModel.editMode)
+            editProfile.changesMade();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        registerOrEdit = new com.example.fxstudentmanagement.Controllers.Logics.RegisterOrEdit();
-        registerOrEdit.setRegisterOrEdit(this);
-        registerOrEdit.setSpinner();
+        registerOrEditModel = new RegisterOrEditModel();
+        registerOrEditModel.setRegisterOrEdit(this);
+        registerOrEditModel.setSpinner();
+        if (teacherUsing != null)
+            registerOrEditModel.setEditProfile();
 
         choiceBoxGradeLevel.setItems(gradeLevel);
         choiceBoxGradeLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            registerOrEdit.gradeLevelTeachingSelected();
+            registerOrEditModel.gradeLevelTeachingSelected();
         });
     }
 
-}
+    public void editTeacher() {
+        editProfile = registerOrEditModel.new EditProfile();
+        editProfile.setProfileFields();
+    }
 
+}

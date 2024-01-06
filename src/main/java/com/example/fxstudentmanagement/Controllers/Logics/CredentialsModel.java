@@ -1,5 +1,6 @@
 package com.example.fxstudentmanagement.Controllers.Logics;
 
+import com.example.fxstudentmanagement.Controllers.Controllers.CredentialsController;
 import com.example.fxstudentmanagement.Resources.Miscellaneous.Scenes;
 import com.example.fxstudentmanagement.Resources.Objects.Teacher;
 import javafx.fxml.FXMLLoader;
@@ -9,19 +10,19 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 
-import static com.example.fxstudentmanagement.Controllers.Controllers.RegisterOrEdit.*;
-import static com.example.fxstudentmanagement.Controllers.Controllers.RegisterOrEdit.stage;
+import static com.example.fxstudentmanagement.Controllers.Controllers.RegisterOrEditController.*;
+import static com.example.fxstudentmanagement.Controllers.Controllers.RegisterOrEditController.stage;
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts.*;
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.*;
 
-public class Credentials {
+public class CredentialsModel {
     private static Teacher teacherObject;
     private com.example.fxstudentmanagement.Resources.Objects.Credentials credentialsObject;
 
-    private com.example.fxstudentmanagement.Controllers.Controllers.Credentials credentials;
+    private CredentialsController credentialsController;
 
-    public void setCredentials(com.example.fxstudentmanagement.Controllers.Controllers.Credentials credentials) {
-        this.credentials = credentials;
+    public void setCredentials(CredentialsController credentialsController) {
+        this.credentialsController = credentialsController;
     }
 
     public void getTeacherInfoAndCreateObject(LocalDate localDate, Integer[] integers, String... strings) {
@@ -32,7 +33,7 @@ public class Credentials {
     }
 
     public void checkInputs() throws IOException {
-        if (!credentials.txtFieldEmail.getText().isEmpty() && !credentials.txtFieldPassword.getText().isEmpty() && !credentials.txtFieldConfirmPassword.getText().isEmpty()) {
+        if (!credentialsController.txtFieldEmail.getText().isEmpty() && !credentialsController.txtFieldPassword.getText().isEmpty() && !credentialsController.txtFieldConfirmPassword.getText().isEmpty()) {
             if (passwordMatched()) {
                 proceed();
             } else {
@@ -44,8 +45,8 @@ public class Credentials {
     }
 
     private boolean passwordMatched() {
-        String password = credentials.txtFieldPassword.getText();
-        String confirmPassword = credentials.txtFieldConfirmPassword.getText();
+        String password = credentialsController.txtFieldPassword.getText();
+        String confirmPassword = credentialsController.txtFieldConfirmPassword.getText();
 
         return password.equals(confirmPassword);
     }
@@ -67,8 +68,8 @@ public class Credentials {
     }*/
 
     private void proceed() throws IOException{
-        String email = credentials.txtFieldEmail.getText();
-        String password = credentials.txtFieldConfirmPassword.getText(); //invoke hashPassword() here
+        String email = credentialsController.txtFieldEmail.getText();
+        String password = credentialsController.txtFieldConfirmPassword.getText(); //invoke hashPassword() here
 
         credentialsObject = new com.example.fxstudentmanagement.Resources.Objects.Credentials(email, password);
 
@@ -85,7 +86,7 @@ public class Credentials {
         teacherSet.add(teacherObject);
         credentialsSet.add(credentialsObject);
 
-        loginMap.put(credentials.txtFieldEmail.getText(), credentials.txtFieldConfirmPassword.getText());
+        loginMap.put(credentialsController.txtFieldEmail.getText(), credentialsController.txtFieldConfirmPassword.getText());
 
         credentialsTeacherHashMap.put(credentialsObject, teacherObject);
     }
@@ -112,7 +113,7 @@ public class Credentials {
     }
 
     private void closeThisStage() {
-        Stage thisStage = (Stage) credentials.txtFieldEmail.getScene().getWindow();
+        Stage thisStage = (Stage) credentialsController.txtFieldEmail.getScene().getWindow();
         thisStage.close();
     }
 }

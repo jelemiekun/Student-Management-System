@@ -55,7 +55,6 @@ public class Teacher extends Person implements TeacherOperation {
     }
 
     // Operations
-    private static Integer numberOfSections;
     public ObservableList<Section> sectionObservableList = FXCollections.observableArrayList();
     public Section section;
 

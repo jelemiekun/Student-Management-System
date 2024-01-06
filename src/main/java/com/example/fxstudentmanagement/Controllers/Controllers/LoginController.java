@@ -1,5 +1,6 @@
 package com.example.fxstudentmanagement.Controllers.Controllers;
 
+import com.example.fxstudentmanagement.Controllers.Logics.LoginModel;
 import com.example.fxstudentmanagement.Resources.Miscellaneous.Lists;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,8 +21,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Login implements Initializable {
-    private com.example.fxstudentmanagement.Controllers.Logics.Login login;
+public class LoginController implements Initializable {
+    private LoginModel loginModel;
     public static FXMLLoader fxmlLoader;
     public static Parent root;
     public static Scene scene;
@@ -44,28 +45,37 @@ public class Login implements Initializable {
     public CheckBox checkViewPass;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        login = new com.example.fxstudentmanagement.Controllers.Logics.Login();
-        login.setLogin(this);
+        loginModel = new LoginModel();
+        loginModel.setLogin(this);
 
         lists = new Lists();
     }
     @FXML
     void btnLoginClicked(MouseEvent event) throws IOException {
-        login.proceed(true);
+        loginModel.proceed(true);
     }
     @FXML
     void btnRegisterClicked(MouseEvent event) throws IOException {
-        login.proceed(false);
+        loginModel.proceed(false);
     }
     @FXML
     void txtFieldPressedEnter(KeyEvent event) throws IOException {
-        if (event.getCode() == KeyCode.ENTER) {
-            login.proceed(true);
-        }
+        if (event.getCode() == KeyCode.ENTER)
+            loginModel.proceed(true);
+    }
+    @FXML
+    void btnLoginPressedEnter(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER)
+            loginModel.proceed(true);
+    }
+    @FXML
+    void btnRegisterPressedEnter(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER)
+            loginModel.proceed(false);
     }
 
     @FXML
     void checkViewPassSelected(ActionEvent event) {
-        login.viewPass();
+        loginModel.viewPass();
     }
 }

@@ -6,18 +6,18 @@ import com.example.fxstudentmanagement.Resources.Objects.Credentials;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import static com.example.fxstudentmanagement.Controllers.Controllers.Login.*;
+import static com.example.fxstudentmanagement.Controllers.Controllers.LoginController.*;
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.*;
 
 import java.io.IOException;
 
-public class Login {
+public class LoginModel {
     private static Integer attemptCount = 1;
     private static Integer MAX_ATTEMPTS = 5;
-    private com.example.fxstudentmanagement.Controllers.Controllers.Login login;
+    private com.example.fxstudentmanagement.Controllers.Controllers.LoginController loginController;
 
-    public void setLogin(com.example.fxstudentmanagement.Controllers.Controllers.Login login) {
-        this.login = login;
+    public void setLogin(com.example.fxstudentmanagement.Controllers.Controllers.LoginController loginController) {
+        this.loginController = loginController;
     }
     public void proceed(boolean isHome) throws IOException {
         if (isHome) {
@@ -44,7 +44,7 @@ public class Login {
         String resource = toHome ? Scenes.HOME.getPath() : Scenes.REGISTER.getPath();
         String title = toHome? Scenes.HOME.getTitle() : Scenes.REGISTER.getTitle();
 
-        fxmlLoader = new FXMLLoader(Login.class.getResource(resource));
+        fxmlLoader = new FXMLLoader(LoginModel.class.getResource(resource));
         root = fxmlLoader.load();
         scene = new Scene(root);
         stage = new Stage();
@@ -70,12 +70,12 @@ public class Login {
     }
 
     private boolean checkInputs() {
-        return (!login.txtFieldEmail.getText().isEmpty() && !login.txtFieldPassword.getText().isEmpty());
+        return (!loginController.txtFieldEmail.getText().isEmpty() && !loginController.txtFieldPassword.getText().isEmpty());
     }
 
     private boolean checkInList() {
-        String email = login.txtFieldEmail.getText();
-        String password = login.txtFieldPassword.getText();
+        String email = loginController.txtFieldEmail.getText();
+        String password = loginController.txtFieldPassword.getText();
 
         if (loginMap.containsKey(email)) {
             if (loginMap.containsValue(password)) { // successfully logged in
@@ -95,7 +95,7 @@ public class Login {
     }
 
     private void getCredentialsValue() {
-        String email = login.txtFieldEmail.getText();
+        String email = loginController.txtFieldEmail.getText();
 
         for (Credentials credentialsLogin : credentialsSet) {
             if (credentialsLogin.getEmail().equals(email)) {
@@ -110,27 +110,27 @@ public class Login {
     }
 
     public void viewPass() {
-        if (login.checkViewPass.isSelected()) {
-            login.txtFieldPassword.setVisible(false);
-            login.txtFieldViewPass.setVisible(true);
-            login.txtFieldViewPass.setText(login.txtFieldPassword.getText());
+        if (loginController.checkViewPass.isSelected()) {
+            loginController.txtFieldPassword.setVisible(false);
+            loginController.txtFieldViewPass.setVisible(true);
+            loginController.txtFieldViewPass.setText(loginController.txtFieldPassword.getText());
         } else {
-            login.txtFieldPassword.setVisible(true);
-            login.txtFieldViewPass.setVisible(false);
-            login.txtFieldPassword.setText(login.txtFieldViewPass.getText());
+            loginController.txtFieldPassword.setVisible(true);
+            loginController.txtFieldViewPass.setVisible(false);
+            loginController.txtFieldPassword.setText(loginController.txtFieldViewPass.getText());
         }
     }
 
     private void attemptLimitReached() {
         Alerts.alertLoginAttempt(true, true);
-        login.txtFieldEmail.setText(null);
-        login.txtFieldPassword.setText(null);
+        loginController.txtFieldEmail.setText(null);
+        loginController.txtFieldPassword.setText(null);
         attemptCount = 1;
-        login.txtFieldEmail.requestFocus();
+        loginController.txtFieldEmail.requestFocus();
     }
 
     private void closeThisStage() {
-        Stage loginStage = (Stage) login.txtFieldEmail.getScene().getWindow();
+        Stage loginStage = (Stage) loginController.txtFieldEmail.getScene().getWindow();
         loginStage.close();
     }
 }

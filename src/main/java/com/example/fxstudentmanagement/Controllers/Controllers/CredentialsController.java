@@ -1,6 +1,6 @@
 package com.example.fxstudentmanagement.Controllers.Controllers;
 
-import javafx.event.ActionEvent;
+import com.example.fxstudentmanagement.Controllers.Logics.CredentialsModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Credentials implements Initializable {
-    private com.example.fxstudentmanagement.Controllers.Logics.Credentials credentials;
+public class CredentialsController implements Initializable {
+    private CredentialsModel credentialsModel;
     @FXML
     private Button btnCancel;
 
@@ -30,29 +30,29 @@ public class Credentials implements Initializable {
 
     @FXML
     void btnGoBackClicked(MouseEvent event) throws IOException{
-        credentials.goBack();
+        credentialsModel.goBack();
     }
 
     @FXML
     void btnConfirmClicked(MouseEvent event) throws IOException {
-        credentials.checkInputs();
+        credentialsModel.checkInputs();
     }
 
     @FXML
     void pressedEnter(KeyEvent event) throws IOException {
         if (event.getCode() == KeyCode.ENTER)
-            credentials.checkInputs();
+            credentialsModel.checkInputs();
     }
 
     @FXML
     void cancelPressedEnter(KeyEvent event) throws IOException {
         if (event.getCode() == KeyCode.ENTER)
-            credentials.goBack();
+            credentialsModel.goBack();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        credentials = new com.example.fxstudentmanagement.Controllers.Logics.Credentials();
-        credentials.setCredentials(this);
+        credentialsModel = new CredentialsModel();
+        credentialsModel.setCredentials(this);
     }
 }

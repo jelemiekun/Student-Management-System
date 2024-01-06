@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 
-public class Section {
+public class SectionController {
 
     @FXML
     private DatePicker birthDatePicker;
