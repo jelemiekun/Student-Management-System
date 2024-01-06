@@ -2,6 +2,7 @@ package com.example.fxstudentmanagement.Controllers.Logics;
 
 import com.example.fxstudentmanagement.Controllers.Controllers.CredentialsController;
 import com.example.fxstudentmanagement.Resources.Miscellaneous.Scenes;
+import com.example.fxstudentmanagement.Resources.Objects.Credentials;
 import com.example.fxstudentmanagement.Resources.Objects.Teacher;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -83,6 +84,10 @@ public class CredentialsModel {
     }
 
     private void addToLists() {
+        LocalDate localDate = LocalDate.now();
+        Teacher teacher = new Teacher("John Jeremie", "Eden", "Male", 17, "09208905313", localDate, 29, 12, "ICT");
+        Credentials credentials = new Credentials("admin", "admin");
+
         teacherSet.add(teacherObject);
         credentialsSet.add(credentialsObject);
 

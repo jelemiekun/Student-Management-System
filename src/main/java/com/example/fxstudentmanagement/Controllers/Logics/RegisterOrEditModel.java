@@ -5,9 +5,9 @@ import com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts;
 import com.example.fxstudentmanagement.Resources.Miscellaneous.Scenes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,6 +20,7 @@ import static com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts.*;
 public class RegisterOrEditModel {
     private String genderSelected;
     private boolean edited;
+    private boolean visibility = false;
     public boolean editMode = false;
     private EditProfile editProfile;
     private RegisterOrEditController registerOrEditController;
@@ -75,10 +76,16 @@ public class RegisterOrEditModel {
             registerOrEditController.birthday.getValue() != null                &&   registerOrEditController.choiceBoxGradeLevel.getValue() != null &&
             registerOrEditController.choiceBoxDepartment.getValue() != null) {
             if (areInputIntegers()) {
-                if (!editMode)
+                if (editMode) {
+                    if (edited) {
+                        editProfile.saveChanges();
+                    } else {
+                        editProfile.setFieldsVisibility();
+                        visibility = !visibility;
+                    }
+                } else {
                     conditionBeforeProceed(true, false);
-                else
-                    editProfile.saveChanges();
+                }
             }
         } else {
             alertFormNotComplete(true, false);
@@ -168,7 +175,15 @@ public class RegisterOrEditModel {
 
         public void setProfileFields() {
             setOthers();
-
+            setFieldsValue();
+            setFieldsVisibility();
+            setEventReleased();
+        }
+        private void setOthers() {
+            editMode = true;
+            genderSelected = teacherUsing.getGender();
+        }
+        private void setFieldsValue() {
             registerOrEditController.txtFieldFirstName.setText(teacherUsing.getFirstName());
             registerOrEditController.txtFieldMiddleName.setText(teacherUsing.getMiddleName());
             registerOrEditController.txtFieldLastName.setText(teacherUsing.getLastName());
@@ -179,14 +194,26 @@ public class RegisterOrEditModel {
             registerOrEditController.txtFieldEmployeeID.setText(String.valueOf(teacherUsing.getEmployeeID()));
             registerOrEditController.choiceBoxGradeLevel.setValue(teacherUsing.getGradeLevelTeaching());
             registerOrEditController.choiceBoxDepartment.setValue(teacherUsing.getDepartment());
-
-            setEventReleased();
         }
 
-        private void setOthers() {
-            editMode = true;
-            registerOrEditController.btnRegister.setText("Edit");
-            genderSelected = teacherUsing.getGender();
+        private void setFieldsVisibility() {
+            registerOrEditController.txtFieldFirstName.setEditable(visibility);
+            registerOrEditController.txtFieldMiddleName.setEditable(visibility);
+            registerOrEditController.txtFieldLastName.setEditable(visibility);
+            registerOrEditController.radioBtnMale.setDisable(!visibility);
+            registerOrEditController.radioBtnFemale.setDisable(!visibility);
+            registerOrEditController.radioBtnOther.setDisable(!visibility);
+            registerOrEditController.spinnerAge.setEditable(visibility);
+            for (Node node : registerOrEditController.spinnerAge.lookupAll(".increment-arrow-button, .decrement-arrow-button")) {
+                node.setDisable(!visibility);
+            }
+            registerOrEditController.txtFieldPhoneNumber.setEditable(visibility);
+            registerOrEditController.birthday.setEditable(visibility);
+            registerOrEditController.txtFieldEmployeeID.setEditable(visibility);
+            registerOrEditController.choiceBoxGradeLevel.setDisable(!visibility);
+            registerOrEditController.choiceBoxDepartment.setDisable(!visibility);
+
+            registerOrEditController.btnRegister.setText(visibility ? "Save" : "Edit");
         }
         private void setToggle() {
             switch (teacherUsing.getGender()) {
@@ -197,23 +224,25 @@ public class RegisterOrEditModel {
         }
 
         private void setEventReleased() {
-            //registerOrEditController.txtFieldFirstName.setOnKeyReleased(this::changesMade);
-            //registerOrEditController.txtFieldMiddleName.setOnKeyReleased(this::changesMade);
-            //registerOrEditController.txtFieldLastName.setOnKeyReleased(this::changesMade);
-            //registerOrEditController.spinnerAge.setOnKeyReleased(this::changesMade);
-            //registerOrEditController.txtFieldPhoneNumber.setOnKeyReleased(this::changesMade);
             registerOrEditController.birthday.setOnAction(this::changesMade);
-            //registerOrEditController.txtFieldEmployeeID.setOnKeyReleased(this::changesMade);
             registerOrEditController.choiceBoxGradeLevel.setOnAction(this::changesMade);
             registerOrEditController.choiceBoxDepartment.setOnAction(this::changesMade);
         }
 
         public void changesMade() {
-            edited = true;
+            if (!visibility)
+                edited = true;
+
+            System.out.println(visibility);
+            System.out.println(edited);
         }
 
         private void changesMade(ActionEvent event) {
-            edited = true;
+            if (!visibility)
+                edited = true;
+
+            System.out.println(visibility);
+            System.out.println(edited);
         }
 
         public boolean checkIfSomethingChanged() {
@@ -240,6 +269,7 @@ public class RegisterOrEditModel {
             teacherUsing.setDepartment(registerOrEditController.choiceBoxDepartment.getValue());
 
             edited = !edited;
+            setFieldsVisibility();
         }
     }
 
