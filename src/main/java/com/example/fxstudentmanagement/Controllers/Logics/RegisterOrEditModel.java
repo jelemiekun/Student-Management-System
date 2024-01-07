@@ -77,7 +77,6 @@ public class RegisterOrEditModel {
                 if (editMode) {
                     if (edited) {
                         editProfile.saveChanges();
-                        visibility = !visibility;
                     } else {
                         visibility = !visibility;
                         editProfile.setFieldsVisibility();
@@ -264,6 +263,7 @@ public class RegisterOrEditModel {
             teacherUsing.setDepartment(registerOrEditController.choiceBoxDepartment.getValue());
 
             edited = !edited;
+            visibility = !visibility;
             setFieldsVisibility();
         }
     }
