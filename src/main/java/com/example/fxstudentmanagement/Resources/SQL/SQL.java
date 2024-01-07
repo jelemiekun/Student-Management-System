@@ -14,13 +14,13 @@ public class SQL {
             connection = DriverManager.getConnection(URL, USER, PASS);
             statement = connection.createStatement();
 
-            AlertsetHeaderText = "Connected to database.";
-            AlertsetContentText = "Successfully connected to database.";
+            alertSetHeaderText = "Connected to database.";
+            alertSetContentText = "Successfully connected to database.";
             //sqlAlert(false);
             setDatabaseAndTable();
         } catch (SQLException e) {
-            AlertsetHeaderText = "Can't connect to database.";
-            AlertsetContentText = e.getMessage();
+            alertSetHeaderText = "Can't connect to database.";
+            alertSetContentText = e.getMessage();
             //sqlAlert(true);
         }
     }
@@ -46,8 +46,8 @@ public class SQL {
                     ");";
             statement.execute(createTableQuery);
         } catch (SQLException e) {
-            AlertsetHeaderText = "Error setting database and table.";
-            AlertsetContentText = e.getMessage();
+            alertSetHeaderText = "Error setting database and table.";
+            alertSetContentText = e.getMessage();
             sqlAlert(true);
         }
     }

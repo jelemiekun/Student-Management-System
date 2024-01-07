@@ -1,16 +1,12 @@
 package com.example.fxstudentmanagement.Resources.Miscellaneous;
 
-import com.example.fxstudentmanagement.Controllers.Logics.HomeModel;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-
-import java.io.IOException;
 import java.util.Optional;
 
 public class Alerts {
-    public static String AlertsetHeaderText;
-    public static String AlertsetContentText;
+    public static String alertSetHeaderText;
+    public static String alertSetContentText;
     private static Alert alert;
 
     public static void sqlAlert(boolean ifAlert) {
@@ -20,8 +16,8 @@ public class Alerts {
             alert = new Alert(Alert.AlertType.INFORMATION);
 
         alert.setTitle("SQL Alert");
-        alert.setHeaderText(AlertsetHeaderText);
-        alert.setContentText(AlertsetContentText);
+        alert.setHeaderText(alertSetHeaderText);
+        alert.setContentText(alertSetContentText);
         alert.show();
     }
 

@@ -1,7 +1,6 @@
 package com.example.fxstudentmanagement.Controllers.Logics;
 
 import com.example.fxstudentmanagement.Controllers.Controllers.RegisterOrEditController;
-import com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts;
 import com.example.fxstudentmanagement.Resources.Miscellaneous.Scenes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

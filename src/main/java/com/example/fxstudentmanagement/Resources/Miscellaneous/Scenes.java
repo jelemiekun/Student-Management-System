@@ -8,8 +8,8 @@ public enum Scenes {
     CREDENTIALS("Account Information", "/com/example/fxstudentmanagement/Credentials.fxml"),
     SECTION("Sections", "/com/example/fxstudentmanagement/Section.fxml");
 
-    private String title;
-    private String path;
+    private final String title;
+    private final String path;
 
     Scenes(String title, String path) {
         this.title = title;

@@ -2,8 +2,6 @@ package com.example.fxstudentmanagement.Controllers.Logics;
 
 import com.example.fxstudentmanagement.Controllers.Controllers.RegisterOrEditController;
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts.*;
-
-import com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts;
 import com.example.fxstudentmanagement.Resources.Miscellaneous.Scenes;
 import com.example.fxstudentmanagement.Resources.Objects.Section;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +18,6 @@ import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.*;
 public class HomeModel {
     private RegisterOrEditController registerOrEditController;
     private com.example.fxstudentmanagement.Controllers.Controllers.HomeController homeController;
-    public Section selectedSection;
     private FXMLLoader fxmlLoader;
     private Parent root;
     private Scene scene;
@@ -36,8 +33,13 @@ public class HomeModel {
         homeController.colSection.setCellValueFactory(new PropertyValueFactory<>("sectionName"));
         homeController.colStudentCount.setCellValueFactory(new PropertyValueFactory<>("sectionStudentCount"));
 
+        setFields();
+    }
+
+    private void setFields() {
+        homeController.labelTotalCount.setText("0");
         homeController.labelNameHere.setText(teacherUsing.getLastName() + ", " + teacherUsing.getFirstName() + " " + teacherUsing.getMiddleName());
-        homeController.labelDepartmentHere.setText(teacherUsing.getDepartment());
+        homeController.labelDepartmentHere.setText(teacherUsing.getGradeLevelTeaching().toString() + " - " + teacherUsing.getDepartment() + " department");
     }
 
     public void editProfile() throws IOException {
