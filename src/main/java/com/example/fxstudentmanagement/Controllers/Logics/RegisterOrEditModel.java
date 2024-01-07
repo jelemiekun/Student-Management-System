@@ -5,7 +5,6 @@ import com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts;
 import com.example.fxstudentmanagement.Resources.Miscellaneous.Scenes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.Stage;
@@ -241,7 +240,7 @@ public class RegisterOrEditModel {
 
         public boolean checkIfSomethingChanged() {
             if (edited) {
-                return Alerts.alertUnsavedChanges();
+                return alertReturnBoolean(false, false, "");
             } else {
                 return true;
             }

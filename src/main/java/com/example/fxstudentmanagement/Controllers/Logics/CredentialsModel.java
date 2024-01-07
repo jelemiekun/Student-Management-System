@@ -36,9 +36,13 @@ public class CredentialsModel {
     public void checkInputs() throws IOException {
         if (!credentialsController.txtFieldEmail.getText().isEmpty() && !credentialsController.txtFieldPassword.getText().isEmpty() && !credentialsController.txtFieldConfirmPassword.getText().isEmpty()) {
             if (passwordMatched()) {
-                proceed();
+                if (!emailAlreadyExist()) {
+                    proceed();
+                } else {
+                    alertPasswordMismatch(true);
+                }
             } else {
-                alertPasswordMismatch();
+                alertPasswordMismatch(false);
             }
         } else {
             alertFormNotComplete(true, false);
@@ -67,6 +71,11 @@ public class CredentialsModel {
             throw new RuntimeException(e);
         }
     }*/
+
+    private boolean emailAlreadyExist() {
+        String email = credentialsController.txtFieldEmail.getText();
+        return loginMap.containsKey(email);
+    }
 
     private void proceed() throws IOException{
         String email = credentialsController.txtFieldEmail.getText();
@@ -106,7 +115,6 @@ public class CredentialsModel {
 
         fxmlLoader = new FXMLLoader(getClass().getResource(source));
         root = fxmlLoader.load();
-
         scene = new Scene(root);
         stage = new Stage();
         stage.setScene(scene);

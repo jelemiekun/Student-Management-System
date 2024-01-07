@@ -1,6 +1,8 @@
 package com.example.fxstudentmanagement.Controllers.Controllers;
 
+import com.example.fxstudentmanagement.Controllers.Logics.SectionModel;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -12,94 +14,98 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 
-public class SectionController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class SectionController implements Initializable {
+    private SectionModel sectionModel;
 
     @FXML
-    private DatePicker birthDatePicker;
+    public DatePicker birthDatePicker;
 
     @FXML
-    private Button btnAddNewStudent;
+    public Button btnAddNewStudent;
 
     @FXML
-    private Button btnDeleteSection;
+    public Button btnDeleteSection;
 
     @FXML
-    private Button btnDeleteStudent;
+    public Button btnDeleteStudent;
 
     @FXML
-    private Button btnEditSection;
+    public Button btnEditSection;
 
     @FXML
-    private Button btnGoBack;
+    public Button btnGoBack;
 
     @FXML
-    private TableColumn<?, ?> colAge;
+    public TableColumn<?, ?> colAge;
 
     @FXML
-    private TableColumn<?, ?> colBirthdate;
+    public TableColumn<?, ?> colBirthdate;
 
     @FXML
-    private TableColumn<?, ?> colFirstName;
+    public TableColumn<?, ?> colFirstName;
 
     @FXML
-    private TableColumn<?, ?> colGender;
+    public TableColumn<?, ?> colGender;
 
     @FXML
-    private TableColumn<?, ?> colLastName;
+    public TableColumn<?, ?> colLastName;
 
     @FXML
-    private TableColumn<?, ?> colMiddleName;
+    public TableColumn<?, ?> colMiddleName;
 
     @FXML
-    private TableColumn<?, ?> colPhoneNumber;
+    public TableColumn<?, ?> colPhoneNumber;
 
     @FXML
-    private TableColumn<?, ?> colStudentID;
+    public TableColumn<?, ?> colStudentID;
 
     @FXML
-    private ToggleGroup gender;
+    public ToggleGroup gender;
 
     @FXML
-    private Label labelAdviser;
+    public Label labelAdviser;
 
     @FXML
-    private Label labelDepartment;
+    public Label labelDepartment;
 
     @FXML
-    private Label labelGradeLevel;
+    public Label labelGradeLevel;
 
     @FXML
-    private Label labelSection;
+    public Label labelSection;
 
     @FXML
-    private Label labelStrand;
+    public Label labelStrand;
 
     @FXML
-    private RadioButton radioBtnFemale;
+    public RadioButton radioBtnFemale;
 
     @FXML
-    private RadioButton radioBtnMale;
+    public RadioButton radioBtnMale;
 
     @FXML
-    private Spinner<?> spinnerAge;
+    public Spinner<?> spinnerAge;
 
     @FXML
-    private TableView<?> tableView;
+    public TableView<?> tableView;
 
     @FXML
-    private TextField txtFieldFirstName;
+    public TextField txtFieldFirstName;
 
     @FXML
-    private TextField txtFieldLastName;
+    public TextField txtFieldLastName;
 
     @FXML
-    private TextField txtFieldMiddleName;
+    public TextField txtFieldMiddleName;
 
     @FXML
-    private TextField txtFieldPhoneNumber;
+    public TextField txtFieldPhoneNumber;
 
     @FXML
-    private TextField txtFieldStudentID;
+    public TextField txtFieldStudentID;
 
     @FXML
     void btnAddNewStudentClicked(MouseEvent event) {
@@ -131,4 +137,10 @@ public class SectionController {
 
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        sectionModel = new SectionModel();
+        sectionModel.setSectionController(this);
+        sectionModel.initialize();
+    }
 }

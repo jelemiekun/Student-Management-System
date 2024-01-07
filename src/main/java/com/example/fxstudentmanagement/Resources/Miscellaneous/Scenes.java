@@ -1,8 +1,8 @@
 package com.example.fxstudentmanagement.Resources.Miscellaneous;
 
 public enum Scenes {
-    HOME("HomeModel", "/com/example/fxstudentmanagement/Home.fxml"),
-    LOGIN("LoginModel", "/com/example/fxstudentmanagement/Login.fxml"),
+    HOME("Home", "/com/example/fxstudentmanagement/Home.fxml"),
+    LOGIN("Login", "/com/example/fxstudentmanagement/Login.fxml"),
     REGISTER("Register", "/com/example/fxstudentmanagement/RegisterOrEdit.fxml"),
     EDIT("Edit Profile", "/com/example/fxstudentmanagement/RegisterOrEdit.fxml"),
     CREDENTIALS("Account Information", "/com/example/fxstudentmanagement/Credentials.fxml"),

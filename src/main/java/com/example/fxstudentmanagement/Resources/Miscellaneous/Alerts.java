@@ -1,8 +1,11 @@
 package com.example.fxstudentmanagement.Resources.Miscellaneous;
 
+import com.example.fxstudentmanagement.Controllers.Logics.HomeModel;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class Alerts {
@@ -39,11 +42,11 @@ public class Alerts {
         alert.showAndWait();
     }
 
-    public static void alertPasswordMismatch() {
+    public static void alertPasswordMismatch(boolean isEmail) {
         alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
-        alert.setHeaderText("Incorrect password");
-        alert.setContentText("Password and Confirm Password do not match.");
+        alert.setHeaderText(isEmail ? "Email already exists." : "Incorrect password");
+        alert.setContentText(isEmail ? "Unable to create account. Email is already registered." : "Password and Confirm Password do not match.");
         alert.show();
     }
 
@@ -57,11 +60,11 @@ public class Alerts {
         alert.show();
     }
 
-    public static boolean alertUnsavedChanges() {
+    public static boolean alertReturnBoolean(boolean isLogout, boolean isDeleteSection, String section) {
         alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Unsaved Changes.");
-        alert.setHeaderText("You have unsaved changes.");
-        alert.setContentText("Press \"OK\" if you want to exit without saving changes.");
+        alert.setTitle(isLogout ? "Log out" : (isDeleteSection ? "Delete Section" : "Unsaved Changes."));
+        alert.setHeaderText(isLogout ? "Confirm log out." : (isDeleteSection ? "Delete " + section + "?" : "You have unsaved changes."));
+        alert.setContentText(isLogout ? "Press \"OK\" if you want to log-out." : (isDeleteSection ? "This action cannot be undone." : "Press \"OK\" if you want to exit without saving changes."));
         ButtonType okButton = new ButtonType("OK");
         ButtonType cancelButton = new ButtonType("Cancel");
         alert.getButtonTypes().setAll(okButton, cancelButton);

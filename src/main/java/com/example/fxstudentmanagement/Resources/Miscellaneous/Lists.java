@@ -15,6 +15,7 @@ public class Lists {
     );*/
     public static Credentials credentialsUsing;
     public static Teacher teacherUsing;
+    public static Section selectedSection;
     public static Set<Credentials> credentialsSet = new HashSet<>();
 
     public static Map<String, String> loginMap = new HashMap<>();

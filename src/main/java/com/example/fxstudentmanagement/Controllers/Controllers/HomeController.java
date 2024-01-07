@@ -31,6 +31,9 @@ public class HomeController implements Initializable {
     public Button btnLogout;
 
     @FXML
+    public Button btnReload;
+
+    @FXML
     public Button btnViewSection;
     @FXML
     public TableView<Section> tableView;
@@ -56,13 +59,18 @@ public class HomeController implements Initializable {
     public AnchorPane totalCounterAnchorPane;
 
     @FXML
-    void btnAddSectionClicked(MouseEvent event) {
-
+    void btnReloadClicked(MouseEvent event) {
+        homeModel.clearClickedRow();
     }
 
     @FXML
-    void btnDeleteSectionClicked(MouseEvent event) {
+    void btnAddSectionClicked(MouseEvent event) {
+        homeModel.addSection();
+    }
 
+    @FXML
+    void btnDeleteSectionClicked(MouseEvent event) throws IOException {
+        homeModel.btnDeleteSectionClicked();
     }
 
     @FXML
@@ -71,18 +79,18 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    void btnLogoutClicked(MouseEvent event) {
-
+    void btnLogoutClicked(MouseEvent event) throws IOException {
+        homeModel.logout();
     }
 
     @FXML
-    void btnViewSectionClicked(MouseEvent event) {
-
+    void btnViewSectionClicked(MouseEvent event) throws IOException {
+        homeModel.checkIfSelectedSectionIsNull(false);
     }
 
     @FXML
-    void tableViewRowClicked(MouseEvent event) {
-
+    void tableViewRowClicked(MouseEvent event) throws IOException {
+        homeModel.clickedRow(event);
     }
 
     @Override

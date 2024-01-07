@@ -9,7 +9,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="584.0" prefWidth="329.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fxstudentmanagement.Controllers.Controllers.HomeController">
    <children>
       <AnchorPane layoutX="31.0" layoutY="92.0" prefHeight="482.0" prefWidth="267.0">
@@ -36,6 +35,11 @@
                   <Label fx:id="labelTotalCount" layoutX="220.0" layoutY="4.0" text="Label" />
                </children>
             </AnchorPane>
+            <Button fx:id="btnReload" layoutX="234.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#btnReloadClicked" text="⟳">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane layoutY="-1.0" prefHeight="82.0" prefWidth="328.0">

@@ -33,7 +33,7 @@
       <RadioButton fx:id="radioBtnFemale" layoutX="53.0" layoutY="178.0" mnemonicParsing="false" onKeyPressed="#genderPressedEnter" onMouseClicked="#genderClicked" text="Female" toggleGroup="$gender" />
       <RadioButton fx:id="radioBtnOther" layoutX="53.0" layoutY="202.0" mnemonicParsing="false" onKeyPressed="#genderPressedEnter" onMouseClicked="#genderClicked" text="Other" toggleGroup="$gender" />
       <Spinner fx:id="spinnerAge" editable="true" layoutX="135.0" layoutY="161.0" onKeyReleased="#txtFieldReleased" prefHeight="25.0" prefWidth="109.0" />
-      <TextField fx:id="txtFieldPhoneNumber" layoutX="282.0" layoutY="159.0" onKeyReleased="#txtFieldReleased" prefHeight="25.0" prefWidth="150.0" />
+      <TextField fx:id="txtFieldPhoneNumber" layoutX="282.0" layoutY="159.0" onKeyReleased="#txtFieldReleased" prefHeight="25.0" prefWidth="150.0" promptText="09xxxxxxxxx" />
       <DatePicker fx:id="birthday" layoutX="243.0" layoutY="219.0" prefHeight="25.0" prefWidth="194.0" />
       <TextField fx:id="txtFieldEmployeeID" layoutX="53.0" layoutY="286.0" onKeyReleased="#txtFieldReleased" prefHeight="25.0" prefWidth="109.0" />
       <ChoiceBox fx:id="choiceBoxGradeLevel" layoutX="180.0" layoutY="286.0" prefHeight="25.0" prefWidth="84.0" />

@@ -1,6 +1,6 @@
 package com.example.fxstudentmanagement.Controllers.Logics;
 
-import com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts;
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts.*;
 import com.example.fxstudentmanagement.Resources.Miscellaneous.Scenes;
 import com.example.fxstudentmanagement.Resources.Objects.Credentials;
 import javafx.fxml.FXMLLoader;
@@ -81,10 +81,10 @@ public class LoginModel {
             if (loginMap.containsValue(password)) { // successfully logged in
                 return true;
             } else {
-                Alerts.alertLoginAttempt(true, false);
+                alertLoginAttempt(true, false);
             }
         } else {
-            Alerts.alertLoginAttempt(false, false);
+            alertLoginAttempt(false, false);
         }
         return false;
     }
@@ -122,7 +122,7 @@ public class LoginModel {
     }
 
     private void attemptLimitReached() {
-        Alerts.alertLoginAttempt(true, true);
+        alertLoginAttempt(true, true);
         loginController.txtFieldEmail.setText(null);
         loginController.txtFieldPassword.setText(null);
         attemptCount = 1;
