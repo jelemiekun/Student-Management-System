@@ -64,4 +64,14 @@ public class Lists {
     public static ObservableList<String> SPORTSobservableList = FXCollections.observableArrayList(
             "ARCHERY", "BASKETBALL"
     );
+
+    public static ObservableList<String> JHSSectionsObservableList = FXCollections.observableArrayList(
+            "STE - 1", "STE - 2", "STE - 3",
+            "EBEC - 1", "EBEC - 2", "EBEC - 3", "EBEC - 4", "EBEC - 5", "EBEC - 6", "EBEC - 7", "EBEC - 8", "EBEC - 9", "EBEC - 10",
+            "EBEC - 11", "EBEC - 12", "EBEC - 13", "EBEC - 14", "EBEC - 15", "EBEC - 16", "EBEC - 17", "EBEC - 18", "EBEC - 19", "EBEC - 20",
+            "EBEC - 21", "EBEC - 22", "EBEC - 23", "EBEC - 24", "EBEC - 25", "EBEC - 26", "EBEC - 27", "EBEC - 28", "EBEC - 29", "EBEC - 30",
+            "EBEC - 31", "EBEC - 32", "EBEC - 33", "EBEC - 34", "EBEC - 35", "EBEC - 36", "EBEC - 37", "EBEC - 38", "EBEC - 39", "EBEC - 40",
+            "SPS - 1", "SPS - 2", "SPS - 3",
+            "SPA - 1", "SPA - 2", "SPA - 3"
+    );
 }

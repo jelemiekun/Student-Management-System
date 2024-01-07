@@ -3,26 +3,19 @@ package com.example.fxstudentmanagement.Resources.Objects;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.teacherUsing;
+
 public class Section {
-    private static Integer numberOfSections = 1;
     public ObservableList<Student> studentObservableList = FXCollections.observableArrayList();
     private Integer sectionNumber;
     private String sectionName;
     private String adviserName;
     private Integer sectionStudentCount;
     public Section() {
-        this.sectionNumber = numberOfSections++;
+        teacherUsing.addSection();
+        this.sectionNumber = teacherUsing.getNumberOfSections();
         this.sectionName = "Section " + sectionNumber;
         this.adviserName = "";
-        this.sectionStudentCount = 0;
-    }
-
-    public static Integer getNumberOfSections() {
-        return numberOfSections;
-    }
-
-    public static void setNumberOfSections(Integer numberOfSections) {
-        Section.numberOfSections = numberOfSections;
     }
 
     public Integer getSectionNumber() {

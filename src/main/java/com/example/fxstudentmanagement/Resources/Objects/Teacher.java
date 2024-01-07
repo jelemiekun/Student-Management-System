@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 public class Teacher extends Person {
     public ObservableList<Section> sectionObservableList = FXCollections.observableArrayList();
+    private Integer numberOfSections = 0;
     private Integer employeeID;
     private Integer gradeLevelTeaching;
     private String department;
@@ -24,6 +25,14 @@ public class Teacher extends Person {
         this.employeeID = employeeID;
         this.gradeLevelTeaching = gradeLevelTeaching;
         this.department = department;
+    }
+
+    public void addSection() {
+        numberOfSections++;
+    }
+
+    public Integer getNumberOfSections() {
+        return numberOfSections;
     }
 
     public Integer getEmployeeID() {
