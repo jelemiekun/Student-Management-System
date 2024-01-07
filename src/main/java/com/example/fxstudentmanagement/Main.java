@@ -30,6 +30,8 @@ public class Main extends Application {
         stage.show();
     }
 
+
+
     public static void main(String[] args) {
         LocalDate localDate = LocalDate.now();
         Teacher teacher = new Teacher("John Jeremie", "Eden", "Male", 17, "09208905313", localDate, 29, 12, "ICT");

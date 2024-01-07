@@ -63,10 +63,8 @@ public class RegisterOrEditModel {
             genderSelected = "Other";
         }
 
-        if (editMode) {
-            System.out.println(genderSelected);
+        if (editMode)
             editProfile.changesMade();
-        }
     }
 
     private void checkInputs() throws IOException{
@@ -79,9 +77,10 @@ public class RegisterOrEditModel {
                 if (editMode) {
                     if (edited) {
                         editProfile.saveChanges();
-                    } else {
-                        editProfile.setFieldsVisibility();
                         visibility = !visibility;
+                    } else {
+                        visibility = !visibility;
+                        editProfile.setFieldsVisibility();
                     }
                 } else {
                     conditionBeforeProceed(true, false);
@@ -122,7 +121,6 @@ public class RegisterOrEditModel {
 
     public void conditionBeforeProceed(boolean toCredentials, boolean toHome) throws IOException{
         if (editMode) {
-            System.out.println("conditionBeforePRoceed edited value: " + edited); // PRINT BOOLEAN EDITED VALUE
             if (editProfile.checkIfSomethingChanged())
                 proceed(toCredentials,toHome);
         } else {
@@ -182,6 +180,7 @@ public class RegisterOrEditModel {
         private void setOthers() {
             editMode = true;
             genderSelected = teacherUsing.getGender();
+            registerOrEditController.btnRegister.requestFocus();
         }
         private void setFieldsValue() {
             registerOrEditController.txtFieldFirstName.setText(teacherUsing.getFirstName());
@@ -204,14 +203,16 @@ public class RegisterOrEditModel {
             registerOrEditController.radioBtnFemale.setDisable(!visibility);
             registerOrEditController.radioBtnOther.setDisable(!visibility);
             registerOrEditController.spinnerAge.setEditable(visibility);
-            for (Node node : registerOrEditController.spinnerAge.lookupAll(".increment-arrow-button, .decrement-arrow-button")) {
-                node.setDisable(!visibility);
-            }
             registerOrEditController.txtFieldPhoneNumber.setEditable(visibility);
             registerOrEditController.birthday.setEditable(visibility);
             registerOrEditController.txtFieldEmployeeID.setEditable(visibility);
             registerOrEditController.choiceBoxGradeLevel.setDisable(!visibility);
             registerOrEditController.choiceBoxDepartment.setDisable(!visibility);
+
+            registerOrEditController.spinnerAge.setStyle(visibility ? "" : "-fx-opacity: 0.5; -fx-background-color: lightgray; -fx-pointer-events: none;");
+            registerOrEditController.birthday.setStyle(visibility ? "" : "-fx-opacity: 0.5; -fx-background-color: lightgray; -fx-pointer-events: none;");
+            registerOrEditController.spinnerAge.setMouseTransparent(!visibility);
+            registerOrEditController.birthday.setMouseTransparent(!visibility);
 
             registerOrEditController.btnRegister.setText(visibility ? "Save" : "Edit");
         }
@@ -230,19 +231,13 @@ public class RegisterOrEditModel {
         }
 
         public void changesMade() {
-            if (!visibility)
+            if (visibility)
                 edited = true;
-
-            System.out.println(visibility);
-            System.out.println(edited);
         }
 
         private void changesMade(ActionEvent event) {
-            if (!visibility)
+            if (visibility)
                 edited = true;
-
-            System.out.println(visibility);
-            System.out.println(edited);
         }
 
         public boolean checkIfSomethingChanged() {
