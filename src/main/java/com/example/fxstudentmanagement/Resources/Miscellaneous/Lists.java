@@ -2,6 +2,7 @@ package com.example.fxstudentmanagement.Resources.Miscellaneous;
 
 import com.example.fxstudentmanagement.Resources.Objects.Credentials;
 import com.example.fxstudentmanagement.Resources.Objects.Section;
+import com.example.fxstudentmanagement.Resources.Objects.Student;
 import com.example.fxstudentmanagement.Resources.Objects.Teacher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -1,6 +1,7 @@
 package com.example.fxstudentmanagement.Controllers.Controllers;
 
 import com.example.fxstudentmanagement.Controllers.Logics.SectionModel;
+import com.example.fxstudentmanagement.Resources.Objects.Student;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,6 +16,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class SectionController implements Initializable {
@@ -39,28 +41,28 @@ public class SectionController implements Initializable {
     public Button btnGoBack;
 
     @FXML
-    public TableColumn<?, ?> colAge;
+    public TableColumn<Student, Integer> colAge;
 
     @FXML
-    public TableColumn<?, ?> colBirthdate;
+    public TableColumn<Student, LocalDate> colBirthdate;
 
     @FXML
-    public TableColumn<?, ?> colFirstName;
+    public TableColumn<Student, String> colFirstName;
 
     @FXML
-    public TableColumn<?, ?> colGender;
+    public TableColumn<Student, String> colGender;
 
     @FXML
-    public TableColumn<?, ?> colLastName;
+    public TableColumn<Student, String> colLastName;
 
     @FXML
-    public TableColumn<?, ?> colMiddleName;
+    public TableColumn<Student, String> colMiddleName;
 
     @FXML
-    public TableColumn<?, ?> colPhoneNumber;
+    public TableColumn<Student, String> colPhoneNumber;
 
     @FXML
-    public TableColumn<?, ?> colStudentID;
+    public TableColumn<Student, Integer> colStudentID;
 
     @FXML
     public ToggleGroup gender;
@@ -87,10 +89,10 @@ public class SectionController implements Initializable {
     public RadioButton radioBtnMale;
 
     @FXML
-    public Spinner<?> spinnerAge;
+    public Spinner<Integer> spinnerAge;
 
     @FXML
-    public TableView<?> tableView;
+    public TableView<Student> tableView;
 
     @FXML
     public TextField txtFieldFirstName;
@@ -107,9 +109,14 @@ public class SectionController implements Initializable {
     @FXML
     public TextField txtFieldStudentID;
 
+    public String selectedGender;
+
+    public Integer selectedAge;
+    public LocalDate selectedBirthdate;
+
     @FXML
     void btnAddNewStudentClicked(MouseEvent event) {
-
+        sectionModel.addStudent();
     }
 
     @FXML
@@ -142,5 +149,6 @@ public class SectionController implements Initializable {
         sectionModel = new SectionModel();
         sectionModel.setSectionController(this);
         sectionModel.initialize();
+        sectionModel.setSpinner();
     }
 }

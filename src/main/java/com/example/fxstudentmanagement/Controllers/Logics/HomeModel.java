@@ -5,10 +5,12 @@ import static com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts.*;
 import com.example.fxstudentmanagement.Resources.Miscellaneous.Scenes;
 import com.example.fxstudentmanagement.Resources.Objects.Section;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -103,6 +105,12 @@ public class HomeModel {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setTitle(title);
+
+        if (toSection) {
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(homeController.labelNameHere.getScene().getWindow());
+        }
+
         stage.show();
 
         if (!toLogin && !toSection) {

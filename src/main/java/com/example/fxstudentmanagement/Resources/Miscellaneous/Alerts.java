@@ -67,4 +67,12 @@ public class Alerts {
         Optional<ButtonType> result = alert.showAndWait();
         return result.isPresent() && result.get() == okButton;
     }
+
+    public static void alertSection(boolean isSectionInfo) {
+        alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Can't perform action");
+        alert.setHeaderText(isSectionInfo ? "Edit section info first" : "Fill all text fields");
+        alert.setContentText(isSectionInfo ? "Please edit this section information first before adding a student." : "Please fill out all the necessary info.");
+        alert.showAndWait();
+    }
 }
