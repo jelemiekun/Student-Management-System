@@ -98,10 +98,6 @@ public class CredentialsModel {
     }
 
     private void addToLists() {
-        LocalDate localDate = LocalDate.now();
-        Teacher teacher = new Teacher("John Jeremie", "Munsod Tapil","Eden", "Male", 17, "09208905313", localDate, 29, 12, "ICT");
-        Credentials credentials = new Credentials("admin", "admin");
-
         teacherSet.add(teacherObject);
         credentialsSet.add(credentialsObject);
 
