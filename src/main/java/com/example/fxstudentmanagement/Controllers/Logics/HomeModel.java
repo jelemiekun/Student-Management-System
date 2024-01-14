@@ -88,9 +88,20 @@ public class HomeModel {
     }
 
     public void clearClickedRow() {
+        homeController.labelTotalCount.setText(getTotalCount());
         homeController.tableView.getSelectionModel().clearSelection();
         homeController.tableView.refresh();
         selectedSection = null;
+    }
+
+    private String getTotalCount() {
+        int totalCount = 0;
+
+        for (Section section : teacherUsing.sectionObservableList) {
+            totalCount += section.getSectionStudentCount();
+        }
+
+        return String.valueOf(totalCount);
     }
 
     private void goToAnotherScene(boolean toLogin, boolean toSection) throws IOException {
@@ -120,9 +131,6 @@ public class HomeModel {
 
         if (!toSection)
             closeThisStage();
-
-        if (toSection)
-            clearClickedRow();
     }
 
     private void closeThisStage() {

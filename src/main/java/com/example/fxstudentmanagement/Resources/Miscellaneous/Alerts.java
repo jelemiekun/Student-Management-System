@@ -72,7 +72,8 @@ public class Alerts {
         alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Can't perform action");
         alert.setHeaderText(isSectionInfo ? "Edit section info first" : "Fill all text fields");
-        alert.setContentText(isSectionInfo ? "Please edit this section information first before adding a student." : "Please fill out all the necessary info.");
+        alert.setContentText(isSectionInfo ? "Please edit this section information first before adding a student.\n" +
+                                             "Note: You can leave the adviser name and adviser department blank." : "Please fill out all the necessary info.");
         alert.showAndWait();
     }
 }

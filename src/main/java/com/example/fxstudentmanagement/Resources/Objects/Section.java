@@ -8,14 +8,18 @@ import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.teac
 public class Section {
     public ObservableList<Student> studentObservableList = FXCollections.observableArrayList();
     private Integer sectionNumber;
+    private Integer sectionGradeLevel;
+    private String sectionStrand;
     private String sectionName;
     private String adviserName;
+    private String adviserDepartment;
     private Integer sectionStudentCount;
+    private boolean edited;
     public Section() {
         teacherUsing.addSection();
         this.sectionNumber = teacherUsing.getNumberOfSections();
         this.sectionName = "Section " + sectionNumber;
-        this.adviserName = "";
+        this.sectionStudentCount = 0;
     }
 
     public Integer getSectionNumber() {
@@ -24,6 +28,22 @@ public class Section {
 
     public void setSectionNumber(Integer sectionNumber) {
         this.sectionNumber = sectionNumber;
+    }
+
+    public Integer getSectionGradeLevel() {
+        return sectionGradeLevel;
+    }
+
+    public void setSectionGradeLevel(Integer sectionGradeLevel) {
+        this.sectionGradeLevel = sectionGradeLevel;
+    }
+
+    public String getSectionStrand() {
+        return sectionStrand;
+    }
+
+    public void setSectionStrand(String sectionStrand) {
+        this.sectionStrand = sectionStrand;
     }
 
     public String getSectionName() {
@@ -42,12 +62,28 @@ public class Section {
         this.adviserName = adviserName;
     }
 
+    public String getAdviserDepartment() {
+        return adviserDepartment;
+    }
+
+    public void setAdviserDepartment(String adviserDepartment) {
+        this.adviserDepartment = adviserDepartment;
+    }
+
     public Integer getSectionStudentCount() {
         return sectionStudentCount;
     }
 
-    public void setSectionStudentCount(Integer sectionStudentCount) {
-        this.sectionStudentCount = sectionStudentCount;
+    public void addSectionStudentCount() {
+        sectionStudentCount++;
+    }
+
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
     }
 
     public void addStudent(Student student) {

@@ -2,6 +2,8 @@ package com.example.fxstudentmanagement.Resources.Objects;
 
 import java.time.LocalDate;
 
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.selectedSection;
+
 public class Student extends Person {
     private Integer studentID;
     private Integer gradeLevel;
@@ -14,6 +16,7 @@ public class Student extends Person {
         this.gradeLevel = gradeLevel;
         this.strand = strand;
         this.section = section;
+        selectedSection.addSectionStudentCount();
     }
 
     public Student(String firstName, String lastName, String gender, Integer age, String phoneNumber, LocalDate birthday,
@@ -23,6 +26,7 @@ public class Student extends Person {
         this.gradeLevel = gradeLevel;
         this.strand = strand;
         this.section = section;
+        selectedSection.addSectionStudentCount();
     }
 
     public Integer getStudentID() {

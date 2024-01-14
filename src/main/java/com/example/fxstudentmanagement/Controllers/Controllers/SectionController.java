@@ -1,18 +1,11 @@
 package com.example.fxstudentmanagement.Controllers.Controllers;
 
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.gradeLevel;
 import com.example.fxstudentmanagement.Controllers.Logics.SectionModel;
 import com.example.fxstudentmanagement.Resources.Objects.Student;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
@@ -108,6 +101,16 @@ public class SectionController implements Initializable {
 
     @FXML
     public TextField txtFieldStudentID;
+    @FXML
+    public ComboBox<String> comboBoxSection;
+    @FXML
+    public ComboBox<Integer> comboBoxGradeLevel;
+    @FXML
+    public ComboBox<String> comboBoxStrand;
+    @FXML
+    public ComboBox<String> comboBoxDepartment;
+    @FXML
+    public TextField txtFieldTeacher;
 
     public String selectedGender;
 
@@ -121,7 +124,7 @@ public class SectionController implements Initializable {
 
     @FXML
     void btnDeleteSectionClicked(MouseEvent event) {
-
+        sectionModel.deleteSection();
     }
 
     @FXML
@@ -131,12 +134,12 @@ public class SectionController implements Initializable {
 
     @FXML
     void btnEditSectionClicked(MouseEvent event) {
-
+        sectionModel.editSectionInfo();
     }
 
     @FXML
     void btnGoBackClicked(MouseEvent event) {
-
+        sectionModel.closeThisStage();
     }
 
     @FXML
@@ -149,6 +152,6 @@ public class SectionController implements Initializable {
         sectionModel = new SectionModel();
         sectionModel.setSectionController(this);
         sectionModel.initialize();
-        sectionModel.setSpinner();
+        comboBoxGradeLevel.setItems(gradeLevel);
     }
 }
