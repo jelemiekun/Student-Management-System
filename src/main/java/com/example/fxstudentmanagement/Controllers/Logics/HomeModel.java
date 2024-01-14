@@ -40,24 +40,20 @@ public class HomeModel {
 
     private void setFields() {
         homeController.labelTotalCount.setText("0");
-        homeController.labelNameHere.setText(selectedTeacher.getLastName() + ", " + selectedTeacher.getFirstName() + " " + selectedTeacher.getMiddleName());
+        homeController.labelNameHere.setText(selectedTeacher.getLastName() + ", " + selectedTeacher.getFirstName() + " " + extractInitials());
         homeController.labelDepartmentHere.setText(selectedTeacher.getGradeLevelTeaching().toString() + " - " + selectedTeacher.getDepartment() + " department");
     }
 
     public static String extractInitials() {
         StringBuilder initials = new StringBuilder();
-
-        // Split the full name into words
         String[] words = selectedTeacher.getMiddleName().split("\\s+");
 
-        // Extract the first character of each word as an initial
         for (String word : words) {
             if (!word.isEmpty()) {
                 initials.append(word.charAt(0)).append(".");
             }
         }
 
-        // Remove the trailing dot
         if (initials.length() > 0) {
             initials.deleteCharAt(initials.length() - 1);
         }
