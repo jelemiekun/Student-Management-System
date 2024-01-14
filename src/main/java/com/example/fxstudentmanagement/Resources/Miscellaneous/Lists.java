@@ -2,6 +2,7 @@ package com.example.fxstudentmanagement.Resources.Miscellaneous;
 
 import com.example.fxstudentmanagement.Resources.Objects.Credentials;
 import com.example.fxstudentmanagement.Resources.Objects.Section;
+import com.example.fxstudentmanagement.Resources.Objects.Student;
 import com.example.fxstudentmanagement.Resources.Objects.Teacher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,15 +10,12 @@ import javafx.collections.ObservableList;
 import java.util.*;
 
 public class Lists {
-    public static Credentials credentialsUsing;
-    public static Teacher teacherUsing;
-    public static Section selectedSection;
     public static Set<Credentials> credentialsSet = new HashSet<>();
 
     public static Map<String, String> loginMap = new HashMap<>();
     public static Set<Teacher> teacherSet = new HashSet<>();
     public static Map<Credentials, Teacher> credentialsTeacherHashMap = new HashMap<>();
-    public static Map<Teacher, List<Section>> sectionTeacherHashMap = new HashMap<>();
+    //public static Map<Teacher, List<Section>> sectionTeacherHashMap = new HashMap<>();
 
 
     public static ObservableList<Integer> gradeLevel = FXCollections.observableArrayList(

@@ -1,8 +1,7 @@
 package com.example.fxstudentmanagement.Resources.Objects;
 
 import java.time.LocalDate;
-
-import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.selectedSection;
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.References.*;
 
 public class Student extends Person {
     private Integer studentID;

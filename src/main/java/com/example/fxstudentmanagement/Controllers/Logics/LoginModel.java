@@ -1,6 +1,7 @@
 package com.example.fxstudentmanagement.Controllers.Logics;
 
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts.*;
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.References.*;
 import com.example.fxstudentmanagement.Resources.Miscellaneous.Scenes;
 import com.example.fxstudentmanagement.Resources.Objects.Credentials;
 import javafx.fxml.FXMLLoader;
@@ -106,7 +107,7 @@ public class LoginModel {
     }
 
     private void getTeacherKey() {
-        teacherUsing = credentialsTeacherHashMap.get(credentialsUsing);
+        selectedTeacher = credentialsTeacherHashMap.get(credentialsUsing);
     }
 
     public void viewPass() {

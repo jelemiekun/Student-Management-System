@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import static com.example.fxstudentmanagement.Controllers.Controllers.RegisterOrEditController.*;
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.*;
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts.*;
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.References.*;
 
 public class RegisterOrEditModel {
     private String genderSelected;
@@ -186,20 +187,20 @@ public class RegisterOrEditModel {
         }
         private void setOthers() {
             editMode = true;
-            genderSelected = teacherUsing.getGender();
+            genderSelected = selectedTeacher.getGender();
             registerOrEditController.btnRegister.requestFocus();
         }
         private void setFieldsValue() {
-            registerOrEditController.txtFieldFirstName.setText(teacherUsing.getFirstName());
-            registerOrEditController.txtFieldMiddleName.setText(teacherUsing.getMiddleName());
-            registerOrEditController.txtFieldLastName.setText(teacherUsing.getLastName());
+            registerOrEditController.txtFieldFirstName.setText(selectedTeacher.getFirstName());
+            registerOrEditController.txtFieldMiddleName.setText(selectedTeacher.getMiddleName());
+            registerOrEditController.txtFieldLastName.setText(selectedTeacher.getLastName());
             setToggle();
-            registerOrEditController.spinnerAge.getValueFactory().setValue(teacherUsing.getAge());
-            registerOrEditController.txtFieldPhoneNumber.setText(teacherUsing.getPhoneNumber());
-            registerOrEditController.birthday.setValue(teacherUsing.getBirthday());
-            registerOrEditController.txtFieldEmployeeID.setText(String.valueOf(teacherUsing.getEmployeeID()));
-            registerOrEditController.choiceBoxGradeLevel.setValue(teacherUsing.getGradeLevelTeaching());
-            registerOrEditController.choiceBoxDepartment.setValue(teacherUsing.getDepartment());
+            registerOrEditController.spinnerAge.getValueFactory().setValue(selectedTeacher.getAge());
+            registerOrEditController.txtFieldPhoneNumber.setText(selectedTeacher.getPhoneNumber());
+            registerOrEditController.birthday.setValue(selectedTeacher.getBirthday());
+            registerOrEditController.txtFieldEmployeeID.setText(String.valueOf(selectedTeacher.getEmployeeID()));
+            registerOrEditController.choiceBoxGradeLevel.setValue(selectedTeacher.getGradeLevelTeaching());
+            registerOrEditController.choiceBoxDepartment.setValue(selectedTeacher.getDepartment());
         }
 
         private void setFieldsVisibility() {
@@ -224,7 +225,7 @@ public class RegisterOrEditModel {
             registerOrEditController.btnRegister.setText(visibility ? "Save" : "Edit");
         }
         private void setToggle() {
-            switch (teacherUsing.getGender()) {
+            switch (selectedTeacher.getGender()) {
                 case "Male" -> registerOrEditController.radioBtnMale.setSelected(true);
                 case "Female" -> registerOrEditController.radioBtnFemale.setSelected(true);
                 case "Other" -> registerOrEditController.radioBtnOther.setSelected(true);
@@ -259,16 +260,16 @@ public class RegisterOrEditModel {
             if (registerOrEditController.txtFieldMiddleName == null)
                 registerOrEditController.txtFieldMiddleName.setText("");
 
-            teacherUsing.setFirstName(registerOrEditController.txtFieldFirstName.getText());
-            teacherUsing.setMiddleName(registerOrEditController.txtFieldMiddleName.getText());
-            teacherUsing.setLastName(registerOrEditController.txtFieldLastName.getText());
-            teacherUsing.setGender(genderSelected == null ? teacherUsing.getGender() : genderSelected);
-            teacherUsing.setAge(registerOrEditController.spinnerAge.getValue());
-            teacherUsing.setPhoneNumber(registerOrEditController.txtFieldPhoneNumber.getText());
-            teacherUsing.setBirthday(registerOrEditController.birthday.getValue());
-            teacherUsing.setEmployeeID(Integer.valueOf(registerOrEditController.txtFieldEmployeeID.getText()));
-            teacherUsing.setGradeLevelTeaching(registerOrEditController.choiceBoxGradeLevel.getValue());
-            teacherUsing.setDepartment(registerOrEditController.choiceBoxDepartment.getValue());
+            selectedTeacher.setFirstName(registerOrEditController.txtFieldFirstName.getText());
+            selectedTeacher.setMiddleName(registerOrEditController.txtFieldMiddleName.getText());
+            selectedTeacher.setLastName(registerOrEditController.txtFieldLastName.getText());
+            selectedTeacher.setGender(genderSelected == null ? selectedTeacher.getGender() : genderSelected);
+            selectedTeacher.setAge(registerOrEditController.spinnerAge.getValue());
+            selectedTeacher.setPhoneNumber(registerOrEditController.txtFieldPhoneNumber.getText());
+            selectedTeacher.setBirthday(registerOrEditController.birthday.getValue());
+            selectedTeacher.setEmployeeID(Integer.valueOf(registerOrEditController.txtFieldEmployeeID.getText()));
+            selectedTeacher.setGradeLevelTeaching(registerOrEditController.choiceBoxGradeLevel.getValue());
+            selectedTeacher.setDepartment(registerOrEditController.choiceBoxDepartment.getValue());
 
             edited = !edited;
             visibility = !visibility;

@@ -72,7 +72,7 @@ public class Alerts {
         alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Can't perform action");
         alert.setHeaderText(isSectionInfo ? "Edit section info first" : (isStudentID ? "Invalid Student ID" : "Fill all text fields"));
-        alert.setContentText(isSectionInfo ? "Please edit this section information first before adding a student.\n" +
+        alert.setContentText(isSectionInfo ? "Please edit this section information first before adding a student.\n\n" +
                                              "Note: You can leave the adviser name and adviser department blank." :
                             (isStudentID ? "Please input a valid number for student ID. (1-99)" : "Please fill out all the necessary info."));
         alert.showAndWait();

@@ -1,7 +1,6 @@
 package com.example.fxstudentmanagement.Controllers.Logics;
 
 import com.example.fxstudentmanagement.Controllers.Controllers.SectionController;
-import com.example.fxstudentmanagement.Resources.Objects.Section;
 import com.example.fxstudentmanagement.Resources.Objects.Student;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,6 +16,7 @@ import java.util.Set;
 
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts.*;
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.*;
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.References.*;
 
 public class SectionModel {
     private boolean editMode = true;
@@ -43,6 +43,12 @@ public class SectionModel {
         sectionController.labelSection.setText(selectedSection.getSectionName());
         sectionController.labelGradeLevel.setText(String.valueOf(selectedSection.getSectionGradeLevel()));
         sectionController.labelLevelStrand.setText(selectedSection.getSectionGradeLevel() + " - " + selectedSection.getSectionStrand());
+
+        if (selectedSection.getAdviserName() != null)
+            sectionController.labelAdviser.setText(selectedSection.getAdviserName());
+
+        if (selectedSection.getAdviserDepartment() != null)
+            sectionController.labelDepartment.setText(selectedSection.getAdviserDepartment());
     }
 
     private void initializeTable() {
@@ -163,6 +169,26 @@ public class SectionModel {
         }
     }
 
+    public void clickedRow() {
+        selectedStudent = sectionController.tableView.getSelectionModel().getSelectedItem();
+    }
+
+    public void deleteStudent() {
+        if (selectedStudent != null) {
+            if (alertReturnBoolean(false, true, (selectedStudent.getFirstName() + " " + selectedStudent.getMiddleName() + " " + selectedStudent.getLastName()))) {
+                selectedSection.studentObservableList.remove(selectedStudent);
+                selectedSection.minusSectionStudentCount();
+                clearClickedRow();
+            }
+        }
+    }
+
+    public void clearClickedRow() {
+        sectionController.tableView.getSelectionModel().clearSelection();
+        sectionController.tableView.refresh();
+        selectedStudent = null;
+    }
+
     public void addStudent() {
         if (selectedSection.isEdited()) {
             if (!areFieldsEmpty()) {
@@ -253,7 +279,7 @@ public class SectionModel {
 
     private void clearFields() {
         sectionController.txtFieldFirstName.setText(null);
-        sectionController.txtFieldMiddleName.setText(null);
+        sectionController.txtFieldMiddleName.setText("");
         sectionController.txtFieldLastName.setText(null);
         sectionController.gender.selectToggle(null);
         sectionController.selectedGender = null;
@@ -281,6 +307,8 @@ public class SectionModel {
         sectionController.comboBoxDepartment.setVisible(editMode);
         sectionController.txtFieldTeacher.setVisible(editMode);
         sectionController.btnEditSection.setText(editMode ? "Save Changes" : "Edit Section Info");
+        sectionController.labelAdviser.setVisible(!editMode);
+        sectionController.labelDepartment.setVisible(!editMode);
     }
 
     private boolean areChoiceBoxSelected() {
@@ -292,6 +320,8 @@ public class SectionModel {
         sectionController.comboBoxGradeLevel.setValue(selectedSection.getSectionGradeLevel());
         sectionController.comboBoxStrand.setValue(selectedSection.getSectionStrand());
         sectionController.comboBoxSection.setValue(selectedSection.getSectionName());
+        sectionController.txtFieldTeacher.setText(selectedSection.getAdviserName());
+        sectionController.comboBoxDepartment.setValue(selectedSection.getAdviserDepartment());
     }
 
     private void saveChanges() {
@@ -299,10 +329,18 @@ public class SectionModel {
             Integer gradeLevel = sectionController.comboBoxGradeLevel.getValue();
             String strand = sectionController.comboBoxStrand.getValue();
             String sectionName = sectionController.comboBoxSection.getValue();
+            String adviserName = sectionController.txtFieldTeacher.getText();
+            String adviserDepartment = sectionController.comboBoxDepartment.getValue();
 
             selectedSection.setSectionGradeLevel(gradeLevel);
             selectedSection.setSectionStrand(strand);
             selectedSection.setSectionName(sectionName);
+
+            if (!adviserName.isEmpty())
+                selectedSection.setAdviserName(adviserName);
+
+            if (adviserDepartment != null)
+                selectedSection.setAdviserDepartment(adviserDepartment);
 
             initializeLabels();
             selectedSection.setEdited(true);
@@ -311,7 +349,7 @@ public class SectionModel {
 
     public void deleteSection() {
         if (alertReturnBoolean(false, true, selectedSection.getSectionName())) {
-            teacherUsing.sectionObservableList.remove(selectedSection);
+            selectedTeacher.sectionObservableList.remove(selectedSection);
             closeThisStage();
         }
     }

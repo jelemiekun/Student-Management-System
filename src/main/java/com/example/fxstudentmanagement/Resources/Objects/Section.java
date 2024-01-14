@@ -1,12 +1,11 @@
 package com.example.fxstudentmanagement.Resources.Objects;
 
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.References.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.teacherUsing;
 
 public class Section {
     public ObservableList<Student> studentObservableList = FXCollections.observableArrayList();
@@ -20,8 +19,8 @@ public class Section {
     private Integer sectionStudentCount;
     private boolean edited;
     public Section() {
-        teacherUsing.addSection();
-        this.sectionNumber = teacherUsing.getNumberOfSections();
+        selectedTeacher.addSection();
+        this.sectionNumber = selectedTeacher.getNumberOfSections();
         this.sectionName = "Section " + sectionNumber;
         this.sectionStudentCount = 0;
     }
@@ -80,6 +79,10 @@ public class Section {
 
     public void addSectionStudentCount() {
         sectionStudentCount++;
+    }
+
+    public void minusSectionStudentCount() {
+        sectionStudentCount--;
     }
 
     public boolean isEdited() {

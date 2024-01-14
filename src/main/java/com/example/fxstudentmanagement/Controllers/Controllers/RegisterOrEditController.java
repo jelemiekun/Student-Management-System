@@ -1,7 +1,7 @@
 package com.example.fxstudentmanagement.Controllers.Controllers;
 
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.*;
-
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.References.*;
 import com.example.fxstudentmanagement.Controllers.Logics.RegisterOrEditModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -101,7 +101,7 @@ public class RegisterOrEditController implements Initializable {
         registerOrEditModel = new RegisterOrEditModel();
         registerOrEditModel.setRegisterOrEdit(this);
         registerOrEditModel.setSpinner();
-        if (teacherUsing != null)
+        if (selectedTeacher != null)
             registerOrEditModel.setEditProfile();
 
         choiceBoxGradeLevel.setItems(gradeLevel);

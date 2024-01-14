@@ -132,7 +132,7 @@ public class SectionController implements Initializable {
 
     @FXML
     void btnDeleteStudentClicked(MouseEvent event) {
-
+        sectionModel.deleteStudent();
     }
 
     @FXML
@@ -147,7 +147,7 @@ public class SectionController implements Initializable {
 
     @FXML
     void tableViewRowClicked(MouseEvent event) {
-
+        sectionModel.clickedRow();
     }
 
     @FXML

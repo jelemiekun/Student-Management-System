@@ -2,10 +2,10 @@ package com.example.fxstudentmanagement.Controllers.Logics;
 
 import com.example.fxstudentmanagement.Controllers.Controllers.RegisterOrEditController;
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts.*;
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.References.*;
 import com.example.fxstudentmanagement.Resources.Miscellaneous.Scenes;
 import com.example.fxstudentmanagement.Resources.Objects.Section;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -30,7 +30,7 @@ public class HomeModel {
     }
 
     public void initialize() {
-        homeController.tableView.setItems(teacherUsing.sectionObservableList);
+        homeController.tableView.setItems(selectedTeacher.sectionObservableList);
         homeController.colNumber.setCellValueFactory(new PropertyValueFactory<>("sectionNumber"));
         homeController.colSection.setCellValueFactory(new PropertyValueFactory<>("sectionName"));
         homeController.colStudentCount.setCellValueFactory(new PropertyValueFactory<>("sectionStudentCount"));
@@ -40,8 +40,8 @@ public class HomeModel {
 
     private void setFields() {
         homeController.labelTotalCount.setText("0");
-        homeController.labelNameHere.setText(teacherUsing.getLastName() + ", " + teacherUsing.getFirstName() + " " + teacherUsing.getMiddleName());
-        homeController.labelDepartmentHere.setText(teacherUsing.getGradeLevelTeaching().toString() + " - " + teacherUsing.getDepartment() + " department");
+        homeController.labelNameHere.setText(selectedTeacher.getLastName() + ", " + selectedTeacher.getFirstName() + " " + selectedTeacher.getMiddleName());
+        homeController.labelDepartmentHere.setText(selectedTeacher.getGradeLevelTeaching().toString() + " - " + selectedTeacher.getDepartment() + " department");
     }
 
     public void editProfile() throws IOException {
@@ -51,14 +51,14 @@ public class HomeModel {
     public void logout() throws IOException {
         if (alertReturnBoolean(true, false, "")) {
             goToAnotherScene(true, false);
-            teacherUsing = null;
+            selectedTeacher = null;
             credentialsUsing = null;
         }
     }
 
     public void addSection() {
         Section section = new Section();
-        teacherUsing.sectionObservableList.add(section);
+        selectedTeacher.sectionObservableList.add(section);
     }
 
     public void btnDeleteSectionClicked() throws IOException {
@@ -82,7 +82,7 @@ public class HomeModel {
 
     private void deleteSection() {
         if (alertReturnBoolean(false, true, selectedSection.getSectionName())) {
-            teacherUsing.sectionObservableList.remove(selectedSection);
+            selectedTeacher.sectionObservableList.remove(selectedSection);
             clearClickedRow();
         }
     }
@@ -97,7 +97,7 @@ public class HomeModel {
     private String getTotalCount() {
         int totalCount = 0;
 
-        for (Section section : teacherUsing.sectionObservableList) {
+        for (Section section : selectedTeacher.sectionObservableList) {
             totalCount += section.getSectionStudentCount();
         }
 
