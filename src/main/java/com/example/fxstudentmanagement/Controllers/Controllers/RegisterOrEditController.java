@@ -115,4 +115,7 @@ public class RegisterOrEditController implements Initializable {
         editProfile.setProfileFields();
     }
 
+    public void setFields() {
+        registerOrEditModel.setFields();
+    }
 }

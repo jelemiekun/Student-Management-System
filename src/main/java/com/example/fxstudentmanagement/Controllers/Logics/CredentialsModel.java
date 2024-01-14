@@ -1,6 +1,7 @@
 package com.example.fxstudentmanagement.Controllers.Logics;
 
 import com.example.fxstudentmanagement.Controllers.Controllers.CredentialsController;
+import com.example.fxstudentmanagement.Controllers.Controllers.RegisterOrEditController;
 import com.example.fxstudentmanagement.Resources.Miscellaneous.Scenes;
 import com.example.fxstudentmanagement.Resources.Objects.Credentials;
 import com.example.fxstudentmanagement.Resources.Objects.Teacher;
@@ -15,8 +16,11 @@ import static com.example.fxstudentmanagement.Controllers.Controllers.RegisterOr
 import static com.example.fxstudentmanagement.Controllers.Controllers.RegisterOrEditController.stage;
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Alerts.*;
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.*;
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.References.*;
+import static com.example.fxstudentmanagement.Resources.Miscellaneous.References.savedDepartment;
 
 public class CredentialsModel {
+    private RegisterOrEditController registerOrEditController;
     private static Teacher teacherObject;
     private com.example.fxstudentmanagement.Resources.Objects.Credentials credentialsObject;
 
@@ -88,6 +92,7 @@ public class CredentialsModel {
 
     private void processes() throws IOException {
         addToLists();
+        clearReferences();
         alertRegisterDone();
         toAnotherScene(true);
     }
@@ -105,6 +110,19 @@ public class CredentialsModel {
         credentialsTeacherHashMap.put(credentialsObject, teacherObject);
     }
 
+    private void clearReferences() {
+        savedFirstName = null;
+        savedMiddleName = null;
+        savedLastName = null;
+        savedGender = null;
+        savedAge = null;
+        savedPhoneNumber = null;
+        savedBirthday = null;
+        savedEmployeeID = null;
+        savedGradeLevelTeaching = null;
+        savedDepartment = null;
+    }
+
     public void goBack() throws IOException{
         toAnotherScene(false);
     }
@@ -115,6 +133,12 @@ public class CredentialsModel {
 
         fxmlLoader = new FXMLLoader(getClass().getResource(source));
         root = fxmlLoader.load();
+
+        if (!toLogin) {
+            registerOrEditController = fxmlLoader.getController();
+            registerOrEditController.setFields();
+        }
+
         scene = new Scene(root);
         stage = new Stage();
         stage.setScene(scene);

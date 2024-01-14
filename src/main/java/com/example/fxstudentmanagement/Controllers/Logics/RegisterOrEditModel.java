@@ -53,6 +53,30 @@ public class RegisterOrEditModel {
         registerOrEditController.spinnerAge.setEditable(true);
     }
 
+    public void setFields() {
+        registerOrEditController.txtFieldFirstName.setText(savedFirstName);
+        registerOrEditController.txtFieldMiddleName.setText(savedMiddleName);
+        registerOrEditController.txtFieldLastName.setText(savedLastName);
+        switch (savedGender) {
+            case "Male":
+                registerOrEditController.radioBtnMale.setSelected(true);
+                break;
+            case "Female":
+                registerOrEditController.radioBtnFemale.setSelected(true);
+                break;
+            case "Other":
+                registerOrEditController.radioBtnOther.setSelected(true);
+                break;
+        }
+        genderSelected = savedGender;
+        registerOrEditController.spinnerAge.getValueFactory().setValue(savedAge);
+        registerOrEditController.txtFieldPhoneNumber.setText(savedPhoneNumber);
+        registerOrEditController.birthday.setValue(savedBirthday);
+        registerOrEditController.txtFieldEmployeeID.setText(String.valueOf(savedEmployeeID));
+        registerOrEditController.choiceBoxGradeLevel.setValue(savedGradeLevelTeaching);
+        registerOrEditController.choiceBoxDepartment.setValue(savedDepartment);
+    }
+
     public void getGender() {
         if (registerOrEditController.radioBtnMale.isSelected()) {
             genderSelected = "Male";
@@ -132,8 +156,23 @@ public class RegisterOrEditModel {
             if (editProfile.checkIfSomethingChanged())
                 proceed(toCredentials,toHome);
         } else {
+            saveInputs();
             proceed(toCredentials, toHome);
         }
+    }
+
+    private void saveInputs() {
+        savedFirstName = registerOrEditController.txtFieldFirstName.getText();
+        savedMiddleName = registerOrEditController.txtFieldMiddleName == null ? "" : registerOrEditController.txtFieldMiddleName.getText();
+        savedLastName = registerOrEditController.txtFieldLastName.getText();
+        savedGender = genderSelected;
+        savedAge = registerOrEditController.spinnerAge.getValue();
+        savedPhoneNumber = registerOrEditController.txtFieldPhoneNumber.getText();
+        savedBirthday = registerOrEditController.birthday.getValue();
+        if (!registerOrEditController.txtFieldEmployeeID.getText().isEmpty())
+            savedEmployeeID = Integer.valueOf(registerOrEditController.txtFieldEmployeeID.getText());
+        savedGradeLevelTeaching = registerOrEditController.choiceBoxGradeLevel.getValue();
+        savedDepartment = registerOrEditController.choiceBoxDepartment.getValue();
     }
 
     private void proceed(boolean toCredentials, boolean toHome) throws IOException {
