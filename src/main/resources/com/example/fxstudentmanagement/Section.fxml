@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="846.0" prefWidth="1077.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fxstudentmanagement.Controllers.Controllers.SectionController">
+<AnchorPane prefHeight="846.0" prefWidth="1077.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fxstudentmanagement.Controllers.Controllers.SectionController">
    <children>
       <HBox alignment="CENTER_LEFT" layoutY="112.0" prefHeight="58.0" prefWidth="1084.0" spacing="5.0">
          <children>
@@ -30,12 +30,12 @@
             <TextField fx:id="txtFieldMiddleName" prefHeight="25.0" prefWidth="160.0" />
             <AnchorPane prefHeight="58.0" prefWidth="121.0">
                <children>
-                  <RadioButton fx:id="radioBtnMale" layoutX="14.0" layoutY="6.0" mnemonicParsing="false" text="Male">
+                  <RadioButton fx:id="radioBtnMale" layoutX="14.0" layoutY="6.0" mnemonicParsing="false" onAction="#genderSelect" text="Male">
                      <toggleGroup>
                         <ToggleGroup fx:id="gender" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="radioBtnFemale" layoutX="14.0" layoutY="26.0" mnemonicParsing="false" text="Female" toggleGroup="$gender" />
+                  <RadioButton fx:id="radioBtnFemale" layoutX="14.0" layoutY="26.0" mnemonicParsing="false" onAction="#genderSelect" text="Female" toggleGroup="$gender" />
                </children>
             </AnchorPane>
             <Spinner fx:id="spinnerAge" prefHeight="25.0" prefWidth="63.0" />
@@ -57,11 +57,10 @@
                   <Font size="40.0" />
                </font>
             </Label>
-            <Label fx:id="labelStrand" layoutX="73.0" layoutY="65.0" text="STRANDHERE" />
             <Button fx:id="btnGoBack" layoutX="990.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#btnGoBackClicked" prefHeight="25.0" prefWidth="81.0" text="Go Back" />
             <Button fx:id="btnEditSection" layoutX="743.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#btnEditSectionClicked" prefHeight="25.0" prefWidth="111.0" text="Save Changes" />
             <Line endX="1019.0" layoutX="65.0" layoutY="111.0" startX="-100.0" />
-            <Label fx:id="labelGradeLevel" layoutX="20.0" layoutY="65.0" text="GRD LVL" />
+            <Label fx:id="labelGradeLevel" layoutX="169.0" layoutY="65.0" text="GRD LVL" visible="false" />
             <AnchorPane layoutX="744.0" layoutY="66.0" prefHeight="32.0" prefWidth="327.0">
                <children>
                   <Button fx:id="btnDeleteStudent" layoutX="178.0" mnemonicParsing="false" onMouseClicked="#btnDeleteStudentClicked" prefHeight="32.0" prefWidth="149.0" text="Delete Student" />
@@ -69,18 +68,20 @@
                </children>
             </AnchorPane>
             <Button fx:id="btnDeleteSection" layoutX="866.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#btnDeleteSectionClicked" prefHeight="25.0" prefWidth="111.0" text="Delete Section" />
-            <Label fx:id="labelAdviser" layoutX="485.0" layoutY="22.0" text="ADVISER NAME HERE" textAlignment="RIGHT">
+            <Label fx:id="labelLevelStrand" layoutX="20.0" layoutY="64.0" text="Label" />
+            <Label fx:id="labelAdviser" alignment="CENTER_RIGHT" layoutX="462.0" layoutY="22.0" prefHeight="35.0" prefWidth="251.0" text="ADVISER NAME" textAlignment="RIGHT">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
+            <Label fx:id="labelStrand" layoutX="222.0" layoutY="66.0" text="STRANDHERE" visible="false" />
             <Line endX="100.0" endY="67.5" layoutX="625.0" layoutY="43.0" startX="100.0" startY="-43.0" />
             <Label fx:id="labelDepartment" layoutX="650.0" layoutY="57.0" text="Department" textAlignment="RIGHT" />
-            <TextField fx:id="txtFieldTeacher" layoutX="485.0" layoutY="27.0" prefHeight="25.0" prefWidth="229.0" promptText="ADVISER NAME" />
+            <TextField fx:id="txtFieldTeacher" alignment="CENTER_RIGHT" layoutX="485.0" layoutY="27.0" prefHeight="25.0" prefWidth="229.0" promptText="ADVISER NAME" />
             <ComboBox fx:id="comboBoxSection" layoutX="20.0" layoutY="27.0" prefHeight="35.0" prefWidth="251.0" promptText="SECTION" />
             <ComboBox fx:id="comboBoxGradeLevel" layoutX="20.0" layoutY="62.0" prefHeight="25.0" prefWidth="81.0" promptText="GRADE" />
             <ComboBox fx:id="comboBoxStrand" layoutX="101.0" layoutY="62.0" prefHeight="25.0" prefWidth="131.0" promptText="STRAND" />
-            <ComboBox fx:id="comboBoxDepartment" layoutX="596.0" layoutY="54.0" prefHeight="25.0" prefWidth="118.0" promptText="DEPARTMENT" />
+            <ComboBox fx:id="comboBoxDepartment" layoutX="596.0" layoutY="52.0" prefHeight="25.0" prefWidth="118.0" promptText="DEPARTMENT" />
          </children>
       </AnchorPane>
       <TableView fx:id="tableView" editable="true" layoutY="172.0" onMouseClicked="#tableViewRowClicked" prefHeight="677.0" prefWidth="1084.0" tableMenuButtonVisible="true">

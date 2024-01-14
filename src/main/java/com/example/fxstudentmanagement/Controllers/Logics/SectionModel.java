@@ -2,6 +2,8 @@ package com.example.fxstudentmanagement.Controllers.Logics;
 
 import com.example.fxstudentmanagement.Controllers.Controllers.SectionController;
 import com.example.fxstudentmanagement.Resources.Objects.Student;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.SpinnerValueFactory;
@@ -38,8 +40,8 @@ public class SectionModel {
 
     private void initializeLabels() {
         sectionController.labelSection.setText(selectedSection.getSectionName());
-        sectionController.labelStrand.setText(selectedSection.getSectionStrand());
         sectionController.labelGradeLevel.setText(String.valueOf(selectedSection.getSectionGradeLevel()));
+        sectionController.labelLevelStrand.setText(selectedSection.getSectionGradeLevel() + " - " + selectedSection.getSectionStrand());
     }
 
     private void initializeTable() {
@@ -75,11 +77,24 @@ public class SectionModel {
         sectionController.comboBoxDepartment.setItems(departmentsObservableList);
     }
 
+    public void setGender() {
+        if (sectionController.radioBtnMale.isSelected())
+            sectionController.selectedGender = "Male";
+        else if (sectionController.radioBtnFemale.isSelected())
+            sectionController.selectedGender = "Female";
+    }
+
     private void setSpinner() {
         int minAge = 1;
         int maxAge = 100;
         sectionController.spinnerAge.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(minAge, maxAge));
         sectionController.spinnerAge.setEditable(true);
+        sectionController.spinnerAge.valueProperty().addListener(new ChangeListener<Integer>() {
+            @Override
+            public void changed(ObservableValue<? extends Integer> observableValue, Integer integer, Integer t1) {
+                sectionController.selectedAge = t1;
+            }
+        });
     }
 
     private void changeStrandChoiceBox() {
@@ -150,12 +165,39 @@ public class SectionModel {
     public void addStudent() {
         if (!areSectionInfoEdited()) {
             if (!areFieldsEmpty()) {
-                addNewStudent();
+                if(areIntegersValid()) {
+                    addNewStudent();
+                }
             } else {
                 alertSection(false);
             }
         } else {
             alertSection(true);
+        }
+    }
+
+    private boolean areIntegersValid() {
+        return isPhoneNumberValid() && isStudentIDValid();
+    }
+
+    private boolean isStudentIDValid() {
+        String input = sectionController.txtFieldStudentID.getText();
+
+        if (input != null && input.matches("\\d+")) {
+            return input.length() == 2;
+        } else {
+            System.out.println("Invalid student ID");
+            return false;
+        }
+    }
+
+    private boolean isPhoneNumberValid() {
+        try {
+            String regex = "^\\d{11}$";
+            return sectionController.txtFieldPhoneNumber.getText().matches(regex);
+        } catch (NumberFormatException e) {
+            alertFormNotComplete(false, true);
+            return false;
         }
     }
 
@@ -165,9 +207,10 @@ public class SectionModel {
     }
 
     private boolean areFieldsEmpty() {
-        return sectionController.txtFieldStudentID.getText().isEmpty() && sectionController.txtFieldLastName.getText().isEmpty() &&
-                sectionController.txtFieldFirstName.getText().isEmpty() && sectionController.selectedGender == null &&
-                sectionController.selectedAge == null && sectionController.txtFieldPhoneNumber.getText().isEmpty() && sectionController.selectedBirthdate == null;
+
+        return sectionController.txtFieldStudentID.getText().isEmpty() || sectionController.txtFieldLastName.getText().isEmpty() ||
+                sectionController.txtFieldFirstName.getText().isEmpty() || sectionController.selectedGender == null ||
+                sectionController.selectedAge == null || sectionController.txtFieldPhoneNumber.getText().isEmpty() || sectionController.selectedBirthdate == null;
     }
 
     private void addNewStudent() {

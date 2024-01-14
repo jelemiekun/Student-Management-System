@@ -3,6 +3,7 @@ package com.example.fxstudentmanagement.Controllers.Controllers;
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.gradeLevel;
 import com.example.fxstudentmanagement.Controllers.Logics.SectionModel;
 import com.example.fxstudentmanagement.Resources.Objects.Student;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -76,6 +77,9 @@ public class SectionController implements Initializable {
     public Label labelStrand;
 
     @FXML
+    public Label labelLevelStrand;
+
+    @FXML
     public RadioButton radioBtnFemale;
 
     @FXML
@@ -145,6 +149,11 @@ public class SectionController implements Initializable {
     @FXML
     void tableViewRowClicked(MouseEvent event) {
 
+    }
+
+    @FXML
+    void genderSelect(ActionEvent event) {
+        sectionModel.setGender();
     }
 
     @Override
