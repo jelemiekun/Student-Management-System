@@ -68,12 +68,21 @@ public class Alerts {
         return result.isPresent() && result.get() == okButton;
     }
 
-    public static void alertSection(boolean isSectionInfo) {
+    public static void alertSection(boolean isSectionInfo, boolean isStudentID) {
         alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Can't perform action");
-        alert.setHeaderText(isSectionInfo ? "Edit section info first" : "Fill all text fields");
+        alert.setHeaderText(isSectionInfo ? "Edit section info first" : (isStudentID ? "Invalid Student ID" : "Fill all text fields"));
         alert.setContentText(isSectionInfo ? "Please edit this section information first before adding a student.\n" +
-                                             "Note: You can leave the adviser name and adviser department blank." : "Please fill out all the necessary info.");
+                                             "Note: You can leave the adviser name and adviser department blank." :
+                            (isStudentID ? "Please input a valid number for student ID. (1-99)" : "Please fill out all the necessary info."));
         alert.showAndWait();
+    }
+
+    public static void alertStudentID() {
+        alert = new Alert((Alert.AlertType.ERROR));
+        alert.setTitle("Can't perform action");
+        alert.setHeaderText("Student ID already exists");
+        alert.setContentText("Please input a unique student ID.");
+        alert.show();
     }
 }

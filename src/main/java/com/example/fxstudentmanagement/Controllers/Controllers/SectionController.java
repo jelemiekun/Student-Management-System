@@ -119,7 +119,6 @@ public class SectionController implements Initializable {
     public String selectedGender;
 
     public Integer selectedAge;
-    public LocalDate selectedBirthdate;
 
     @FXML
     void btnAddNewStudentClicked(MouseEvent event) {

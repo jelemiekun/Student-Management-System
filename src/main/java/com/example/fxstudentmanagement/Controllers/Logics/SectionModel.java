@@ -1,6 +1,7 @@
 package com.example.fxstudentmanagement.Controllers.Logics;
 
 import com.example.fxstudentmanagement.Controllers.Controllers.SectionController;
+import com.example.fxstudentmanagement.Resources.Objects.Section;
 import com.example.fxstudentmanagement.Resources.Objects.Student;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -163,30 +164,43 @@ public class SectionModel {
     }
 
     public void addStudent() {
-        if (!areSectionInfoEdited()) {
+        if (selectedSection.isEdited()) {
             if (!areFieldsEmpty()) {
-                if(areIntegersValid()) {
-                    addNewStudent();
+                if (areIntegersValid()) {
+                    if (!isStudentIDUnique()) {
+                        addNewStudent();
+                    } else {
+                        alertStudentID();
+                    }
                 }
             } else {
-                alertSection(false);
+                alertSection(false, false);
             }
         } else {
-            alertSection(true);
+            alertSection(true, false);
         }
     }
 
-    private boolean areIntegersValid() {
-        return isPhoneNumberValid() && isStudentIDValid();
+    private boolean isStudentIDUnique() {
+        Integer studentID = Integer.parseInt(sectionController.txtFieldStudentID.getText());
+        return selectedSection.studentIDObservableList.contains(studentID);
     }
 
-    private boolean isStudentIDValid() {
-        String input = sectionController.txtFieldStudentID.getText();
+    private boolean areIntegersValid() {
+        return isStudentIDValid() && isPhoneNumberValid();
+    }
 
-        if (input != null && input.matches("\\d+")) {
-            return input.length() == 2;
-        } else {
-            System.out.println("Invalid student ID");
+    public boolean isStudentIDValid() {
+        try {
+            Integer inputValue = Integer.parseInt(sectionController.txtFieldStudentID.getText());
+            if (inputValue >= 1 && inputValue <= 99) {
+                return true;
+            } else {
+                alertSection(false, true);
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            alertSection(false, true);
             return false;
         }
     }
@@ -194,23 +208,23 @@ public class SectionModel {
     private boolean isPhoneNumberValid() {
         try {
             String regex = "^\\d{11}$";
-            return sectionController.txtFieldPhoneNumber.getText().matches(regex);
+            if (sectionController.txtFieldPhoneNumber.getText().matches(regex)) {
+                return true;
+            } else {
+                alertFormNotComplete(false, true);
+                return false;
+            }
         } catch (NumberFormatException e) {
             alertFormNotComplete(false, true);
             return false;
         }
     }
 
-    private boolean areSectionInfoEdited() {
-        return sectionController.labelSection.getText().contains("Section") && sectionController.labelGradeLevel.getText().contains("GRD LVL") &&
-                sectionController.labelStrand.getText().contains("STRANDHERE");
-    }
-
     private boolean areFieldsEmpty() {
-
-        return sectionController.txtFieldStudentID.getText().isEmpty() || sectionController.txtFieldLastName.getText().isEmpty() ||
-                sectionController.txtFieldFirstName.getText().isEmpty() || sectionController.selectedGender == null ||
-                sectionController.selectedAge == null || sectionController.txtFieldPhoneNumber.getText().isEmpty() || sectionController.selectedBirthdate == null;
+        return sectionController.txtFieldStudentID.getText() == null || sectionController.txtFieldLastName.getText() == null ||
+                sectionController.txtFieldFirstName.getText() == null || sectionController.selectedGender == null ||
+                sectionController.selectedAge == null || sectionController.txtFieldPhoneNumber.getText() == null ||
+                sectionController.birthDatePicker.getValue() == null;
     }
 
     private void addNewStudent() {
@@ -220,7 +234,7 @@ public class SectionModel {
         String gender = sectionController.selectedGender;
         Integer age = sectionController.selectedAge;
         String phoneNumber = sectionController.txtFieldPhoneNumber.getText();
-        LocalDate birthday = sectionController.selectedBirthdate;
+        LocalDate birthday = sectionController.birthDatePicker.getValue();
         Integer studentID = Integer.valueOf(sectionController.txtFieldStudentID.getText());
         Integer gradeLevel = Integer.valueOf(sectionController.labelGradeLevel.getText());
         String strand = sectionController.labelStrand.getText();
@@ -233,6 +247,21 @@ public class SectionModel {
             student = new Student(firstName, middleName, lastName, gender, age, phoneNumber, birthday, studentID, gradeLevel, strand, section);
 
         selectedSection.studentObservableList.add(student);
+        selectedSection.studentIDObservableList.add(studentID);
+        clearFields();
+    }
+
+    private void clearFields() {
+        sectionController.txtFieldFirstName.setText(null);
+        sectionController.txtFieldMiddleName.setText(null);
+        sectionController.txtFieldLastName.setText(null);
+        sectionController.gender.selectToggle(null);
+        sectionController.selectedGender = null;
+        sectionController.spinnerAge.getValueFactory().setValue(1);
+        sectionController.selectedAge = null;
+        sectionController.txtFieldPhoneNumber.setText(null);
+        sectionController.birthDatePicker.setValue(null);
+        sectionController.txtFieldStudentID.setText(null);
     }
 
     public void editSectionInfo() {
@@ -240,7 +269,7 @@ public class SectionModel {
             editSection();
             saveChanges();
         } else {
-            alertSection(true);
+            alertSection(true, false);
         }
     }
 

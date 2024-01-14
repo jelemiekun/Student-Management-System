@@ -66,11 +66,7 @@ public class RegisterOrEditModel {
     }
 
     private void checkInputs() throws IOException{
-        if (!registerOrEditController.txtFieldFirstName.getText().isEmpty()     &&   !registerOrEditController.txtFieldLastName.getText().isEmpty() &&
-            !registerOrEditController.txtFieldPhoneNumber.getText().isEmpty()   &&   !registerOrEditController.txtFieldEmployeeID.getText().isEmpty() &&
-            genderSelected != null         &&   registerOrEditController.spinnerAge.getValue() != null &&
-            registerOrEditController.birthday.getValue() != null                &&   registerOrEditController.choiceBoxGradeLevel.getValue() != null &&
-            registerOrEditController.choiceBoxDepartment.getValue() != null) {
+        if (!areFieldsEmpty()) {
             if (areInputIntegers()) {
                 if (editMode) {
                     if (edited) {
@@ -87,6 +83,19 @@ public class RegisterOrEditModel {
             alertFormNotComplete(true, false);
         }
     }
+
+    private boolean areFieldsEmpty() {
+        return registerOrEditController.txtFieldFirstName.getText().isEmpty() ||
+                registerOrEditController.txtFieldLastName.getText().isEmpty() ||
+                registerOrEditController.txtFieldPhoneNumber.getText().isEmpty() ||
+                registerOrEditController.txtFieldEmployeeID.getText().isEmpty() ||
+                genderSelected == null ||
+                registerOrEditController.spinnerAge.getValue() == null ||
+                registerOrEditController.birthday.getValue() == null ||
+                registerOrEditController.choiceBoxGradeLevel.getValue() == null ||
+                registerOrEditController.choiceBoxDepartment.getValue() == null;
+    }
+
 
     private boolean areInputIntegers() {
         return isPhoneNumberValid() && isEmployeeIDValid();
@@ -105,15 +114,16 @@ public class RegisterOrEditModel {
     private boolean isEmployeeIDValid() {
         try {
             String regex = "^\\d{11}$";
-            if (registerOrEditController.txtFieldPhoneNumber.getText().matches(regex))
+            if (registerOrEditController.txtFieldPhoneNumber.getText().matches(regex)) {
                 return true;
-            else
+            } else {
                 alertFormNotComplete(false, true);
+                return false;
+            }
         } catch (NumberFormatException e) {
             alertFormNotComplete(false, true);
             return false;
         }
-        return false;
     }
 
     public void conditionBeforeProceed(boolean toCredentials, boolean toHome) throws IOException{

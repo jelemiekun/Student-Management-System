@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="846.0" prefWidth="1077.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fxstudentmanagement.Controllers.Controllers.SectionController">
+<AnchorPane prefHeight="846.0" prefWidth="1077.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fxstudentmanagement.Controllers.Controllers.SectionController">
    <children>
       <HBox alignment="CENTER_LEFT" layoutY="112.0" prefHeight="58.0" prefWidth="1084.0" spacing="5.0">
          <children>

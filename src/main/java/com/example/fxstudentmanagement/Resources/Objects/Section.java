@@ -3,10 +3,14 @@ package com.example.fxstudentmanagement.Resources.Objects;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static com.example.fxstudentmanagement.Resources.Miscellaneous.Lists.teacherUsing;
 
 public class Section {
     public ObservableList<Student> studentObservableList = FXCollections.observableArrayList();
+    public Set<Integer> studentIDObservableList = new HashSet<>();
     private Integer sectionNumber;
     private Integer sectionGradeLevel;
     private String sectionStrand;
